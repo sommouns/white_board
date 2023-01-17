@@ -56,7 +56,7 @@ export default ({ mode }) => {
                 },
                 less: {
                     modifyVars: {
-                        'primary-color': '#1DA57A'
+                        'primary-color': '#892DFF'
                     },
                     javascriptEnabled: true
                 }

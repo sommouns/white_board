@@ -18,3 +18,12 @@ export enum LOCALSTORAGE_KEYS {
 export const LOGIN_CATEGORY = ['user', 'admin']
 
 export const GITHUB_LINK = 'https://github.com/YDJ-FE'
+
+export const EVENTS = {
+    changeTab: '@event/changeTab',
+    openTitleCard: '@event/openTitleCard',
+    openContentCard: '@event/openContentCard',
+    clearSelectedMark: '@event/clearSelectedMark',
+    clickTopic: '@event/clickTopic',
+    rerenderTitleMark: '@event/rerenderTitleMark'
+}
