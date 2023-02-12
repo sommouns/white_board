@@ -1,0 +1,7 @@
+message Request {
+    optional String phone = 1;
+    optional String phoneCode = 2;
+    optional String mail = 3;
+    optional String mailCode = 4;
+    optional String password = 5;
+}

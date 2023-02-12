@@ -21,7 +21,7 @@ export default observer(() => {
     }, [slideTimes]);
     function next() {
         sellingPointStore.setModalVisible(true);
-        history.push('/aa');
+        history.push('/preview');
     }
     return (
         <div className='entry'>
@@ -29,8 +29,8 @@ export default observer(() => {
                 <div className="entry_wrapper_nav">
                     <div className="entry_wrapper_nav_logo"></div>
                     <div className="entry_wrapper_nav_btns">
-                        <Button type='link'>登录</Button>
-                        <Button type='link'>注册</Button>
+                        <Button type='link' onClick={() => history.push('/signin')}>登录</Button>
+                        <Button type='link' onClick={() => history.push('/register')}>注册</Button>
                     </div>
                 </div>
                 <div className='entry_wrapper_title'>
@@ -60,6 +60,7 @@ export default observer(() => {
                                     options={keywords}
                                     onChange={(v) => entryStore.setUploadKeyword(v)}
                                     value={entryStore.uploadKeyword}
+                                    popupClassName="entry-selector_popup"
                                 />
                                 <TextArea
                                     showCount

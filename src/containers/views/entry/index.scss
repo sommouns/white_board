@@ -170,6 +170,31 @@
                         /* Text/标题文字 */
 
                         color: #1D2129;
+                        border: 1px solid transparent;
+                    }
+
+                    .ant-input:hover,
+                    .ant-input:focus,
+                    .ant-input:focus-visible,
+                    .ant-input:active,
+                    .ant-select:hover,
+                    .ant-select:focus,
+                    .ant-select:focus-visible,
+                    .ant-select:active,
+                    .ant-select:target,
+                    .ant-select:focus-within {
+                        background-color: #fff;
+                        border: 1px solid #892DFF;
+                    }
+
+                    .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+                        background-color: #fff;
+                        border: 1px solid #892DFF;
+                    }
+
+                    .ant-select {
+                        padding-left: 0px;
+                        padding-right: 0px;
                     }
 
                     .ant-select-selector {

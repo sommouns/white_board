@@ -1,0 +1,324 @@
+.login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+
+
+    .ant-card {
+        box-shadow: 0px 4px 28px rgba(53, 48, 87, 0.02), 0px 8px 68px rgba(27, 8, 80, 0.04);
+        border-radius: 12px;
+    }
+
+    .ant-tabs-top>.ant-tabs-nav::before {
+        display: none;
+    }
+
+    .ant-card-body {
+        padding: 48px;
+    }
+
+    // .selector-option-item {
+    //     padding: 5px 12px;
+    //     background-color: #fff;
+    //     font-size: 14px;
+    // }
+
+    // .selector-option-item>span {
+    //     display: none !important;
+    // }
+
+    &_logo {
+        margin-top: 60px;
+        margin-bottom: 52px;
+        background: url(../../../assets/images/logo.svg) no-repeat;
+        background-size: contain;
+        width: 165px;
+        height: 34px;
+    }
+
+    &_title {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 22px;
+        /* identical to box height, or 92% */
+
+        display: flex;
+        align-items: center;
+
+        /* Text/标题文字 */
+
+        color: #1D2129;
+    }
+
+    &_desc {
+        margin-top: 16px;
+        margin-bottom: 30px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        color: #86909C;
+
+        &--link {
+            color: #892DFF;
+            cursor: pointer;
+        }
+    }
+
+    & &_main {
+        &_form {
+            &_item {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                &:not(:last-child) {
+                    margin-bottom: 16px;
+                }
+
+                .ant-select-selector {
+                    background-color: #F2F3F5;
+                    border-radius: 8px;
+                    font-size: 16px;
+                    line-height: 100%;
+                    color: #1D2129;
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                    height: 60px;
+                    line-height: 60px;
+                    border-color: transparent;
+                }
+
+                .ant-select-selection-item {
+                    line-height: 42px;
+                }
+
+                .ant-input:hover,
+                .ant-input:focus,
+                .ant-input:focus-visible,
+                .ant-input:active,
+                .ant-select-selector:hover,
+                .ant-select-selector:focus,
+                .ant-select-selector:focus-visible,
+                .ant-select-selector:active {
+                    background-color: #fff;
+                    border: 1px solid #892DFF;
+                }
+
+                .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+                    background-color: #fff;
+                    border: 1px solid #892DFF;
+                }
+
+                .ant-select-selection-item {
+                    padding-right: 0;
+                }
+
+                .ant-input,
+                .ant-input-password {
+                    /* Fill/常规-白底悬浮 */
+                    border-color: transparent;
+                    background: #F2F3F5;
+                    border-radius: 8px;
+                    height: 60px;
+                    line-height: 60px;
+                    padding-left: 24px;
+                    padding-right: 24px;
+                    font-size: 16px;
+                }
+
+                .ant-input-password {
+                    padding: 0;
+                }
+
+                .ant-input-password .ant-input-suffix {
+                    margin-right: 8px;
+                }
+
+
+
+                .ant-input-wrapper,
+                .ant-input-group-addon {
+                    background: #F2F3F5;
+                    border-color: transparent;
+                    border-radius: 8px;
+                }
+
+                .ant-input-wrapper {
+                    display: flex;
+                    flex-direction: row;
+                    overflow: hidden;
+                }
+
+                .ant-input-group-addon {
+                    width: 130px;
+                    height: 60px;
+                    display: inline-flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-left: 1px solid #E5E6EB;
+                    border-radius: 0;
+                    cursor: pointer;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: #4E5969;
+                }
+            }
+        }
+
+        &_forget-pwd {
+            text-align: right;
+
+            .ant-btn.ant-btn-link {
+                color: #86909C;
+                margin-top: 8px;
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+
+            .ant-btn.ant-btn-link:hover,
+            .ant-btn.ant-btn-link:active {
+                color: #892DFF;
+            }
+        }
+
+        &_btn .ant-btn.ant-btn-primary {
+            /* Brand/Main */
+            background: #892DFF;
+            border-radius: 8px;
+            padding: 12px 20px;
+            height: 48px;
+            width: 100%;
+            margin-top: 40px;
+        }
+
+        &_other {
+            text-align: center;
+            margin-top: 16px;
+        }
+
+
+    }
+
+    .ant-btn-link {
+        padding-left: 0px;
+        padding-right: 0px;
+        color: #86909C;
+    }
+
+    .ant-btn.ant-btn-link:hover,
+    .ant-btn.ant-btn-link:active {
+        color: #892DFF;
+    }
+
+    &_qrcode {
+        height: 200px;
+        width: 200px;
+        margin: 22px auto 0px;
+        position: relative;
+
+        &_reload-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.65);
+            display: flex;
+            flex-direction: column;
+            color: #fff;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        &_loading-mask {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: #F2F3F5;
+            display: flex;
+            flex-direction: column;
+            color: #86909C;
+            font-size: 14px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
+
+.ant-select-dropdown.ant-select-dropdown-placement-bottomLeft {
+    // width: auto !important;
+}
+
+.rc-virtual-list {
+    width: 420px;
+}
+
+.agreement {
+    .ant-modal-content {
+        border-radius: 16px;
+    }
+
+    .ant-modal-body {
+        padding: 32px 40px;
+    }
+
+    .agreement_content {
+        white-space: break-spaces;
+        height: 480px;
+        overflow-y: scroll;
+    }
+
+    .agreement_title {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 100%;
+        /* identical to box height, or 20px */
+
+        text-align: center;
+        letter-spacing: 0.02em;
+
+        /* Text/标题文字 */
+
+        color: #1D2129;
+        margin-bottom: 24px;
+    }
+
+    .agreement_confirm {
+        text-align: center;
+    }
+
+    .agreement_confirm .ant-btn {
+        margin-top: 24px;
+        padding: 7px 20px;
+        width: 140px;
+        box-sizing: content-box;
+        text-align: center;
+        /* Brand/Main */
+
+        background: #892DFF;
+        border-radius: 100px;
+    }
+}
+
+.phone-code_selector_popup {
+    width: auto !important;
+}
+
+.entry-selector_popup {
+    width: auto;
+}

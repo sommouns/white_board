@@ -10,6 +10,11 @@ import Preview from '../preview'
 import Editor from '../editor'
 import Entry from '../entry'
 import ToolBox from '@components/tool-box'
+import { LoginPage } from '../login/index';
+import { WechatScanLogin } from '../login/wechat-scan';
+import { Register } from '../login/register';
+import { ForgetPwdPage } from '../login/forget-pwd';
+import '../login/index.scss'
 
 function Home() {
     return (
@@ -18,8 +23,12 @@ function Home() {
                 <Layout.Content className={styles.content}>
                     <Suspense fallback={<PageLoading />}>
                         <Routes>
-                            <Route path='/aa' element={<Preview />}></Route>
-                            <Route path='/bb' element={<Entry />}></Route>
+                            <Route path='/preview' element={<Preview />}></Route>
+                            <Route path='/signin' element={<LoginPage />}></Route>
+                            <Route path='/wechat' element={<WechatScanLogin />}></Route>
+                            <Route path='/register' element={<Register />}></Route>
+                            <Route path='/forget' element={<ForgetPwdPage />}></Route>
+                            <Route path='/' element={<Entry />}></Route>
                         </Routes>
                     </Suspense>
                 </Layout.Content>
