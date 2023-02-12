@@ -7,6 +7,7 @@ import { observer } from 'mobx-react'
 import Sidebar from './sidebar'
 import ToolBox from '@components/tool-box'
 import { Button } from 'antd'
+import { SellingPointSelector } from '@components/selling-point-selector'
 export default observer(() => {
 
     return (
@@ -32,6 +33,7 @@ export default observer(() => {
                     <ToolBox />
                 </div>
             </div>
+            <SellingPointSelector />
         </div>
     )
 })

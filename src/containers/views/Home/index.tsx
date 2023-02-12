@@ -8,6 +8,7 @@ import PageLoading from '@components/PageLoading'
 import Header from './Header'
 import Preview from '../preview'
 import Editor from '../editor'
+import Entry from '../entry'
 import ToolBox from '@components/tool-box'
 
 function Home() {
@@ -18,9 +19,7 @@ function Home() {
                     <Suspense fallback={<PageLoading />}>
                         <Routes>
                             <Route path='/aa' element={<Preview />}></Route>
-                            <Route path='/bb' element={<Editor />}></Route>
-                            <Route path='/cc' element={<ToolBox />}></Route>
-                            {/* <Route path="*" element={<Error />} /> */}
+                            <Route path='/bb' element={<Entry />}></Route>
                         </Routes>
                     </Suspense>
                 </Layout.Content>

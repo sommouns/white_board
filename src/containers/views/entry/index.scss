@@ -1,0 +1,353 @@
+.entry {
+    background: linear-gradient(to right bottom, #a76df2, #8129ff);
+    height: 100vh;
+    width: 100vw;
+
+    &_wrapper {
+        width: 992px;
+        margin: 0 auto;
+
+        .ant-btn-primary[disabled],
+        .ant-btn-primary[disabled]:hover,
+        .ant-btn-primary[disabled]:focus,
+        .ant-btn-primary[disabled]:active {
+            background-color: #CFAAFF;
+            color: #fff;
+        }
+
+        &_nav {
+            height: 44px;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+
+            &_logo {
+                background: url('../../../assets/images/entry-logo.svg') no-repeat;
+                background-size: contain;
+                width: 95px;
+                height: 22px;
+            }
+
+
+
+            &_btns {
+
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+
+                .ant-btn-link {
+                    font-family: 'PingFang SC';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 100%;
+                    text-align: center;
+                    letter-spacing: 0.03em;
+                    color: #FFFFFF;
+                }
+
+            }
+        }
+
+        &_title {
+            margin-top: 50px;
+            font-family: 'PingFang SC';
+            font-style: normal;
+            font-weight: 600;
+            font-size: 32px;
+            line-height: 100%;
+            /* identical to box height, or 32px */
+
+            text-align: center;
+            letter-spacing: 0.03em;
+
+            /* Text/纯白 */
+
+            color: #FFFFFF;
+        }
+
+        &_desc {
+            margin-top: 24px;
+            font-family: 'PingFang SC';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 100%;
+            /* identical to box height, or 20px */
+
+            text-align: center;
+            letter-spacing: 0.03em;
+
+            /* Text/纯白 */
+
+            color: #FFFFFF;
+        }
+
+        &_main {
+            margin-top: 60px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            justify-content: space-between;
+
+            &_card {
+                display: flex;
+                flex-direction: column;
+
+                .ant-card {
+                    border-radius: 12px;
+                }
+
+                .ant-card-body {
+                    padding: 32px 48px;
+                    height: 468px;
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                &_title {
+                    font-family: 'PingFang SC';
+                    font-style: normal;
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 100%;
+                    text-align: center;
+                    letter-spacing: 0.03em;
+                }
+
+                &_desc {
+                    margin-top: 16px;
+                    margin-bottom: 32px;
+                    font-family: 'PingFang SC';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 18px;
+                    line-height: 100%;
+                    /* identical to box height, or 18px */
+
+                    text-align: center;
+                    letter-spacing: 0.03em;
+
+                    /* Text/描述文字 */
+
+                    color: #4E5969;
+                }
+
+                &_form {
+                    .ant-input-textarea {
+                        position: relative;
+                    }
+
+                    .ant-input-textarea-show-count::after {
+                        position: absolute;
+                        bottom: 8px;
+                        right: 16px;
+                    }
+
+                    grammarly-extension {
+                        display: none;
+                    }
+
+                    .ant-select,
+                    .ant-input {
+                        margin-bottom: 16px;
+                        width: 100%;
+                        border-radius: 8px;
+                        background: #F2F3F5;
+                        padding: 8px;
+                        font-family: 'PingFang SC';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 28px;
+                        /* identical to box height, or 175% */
+
+                        letter-spacing: 0.03em;
+
+                        /* Text/标题文字 */
+
+                        color: #1D2129;
+                    }
+
+                    .ant-select-selector {
+                        padding: 16px;
+                    }
+
+                    .ant-input {
+                        padding-left: 20px;
+                        padding-right: 20px;
+                    }
+
+                    .ant-input-textarea textarea {
+                        border-radius: 8px;
+                        background: #F2F3F5;
+                        padding: 8px 16px 16px;
+                        font-family: 'PingFang SC';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 28px;
+                        /* or 175% */
+
+                        letter-spacing: 0.03em;
+
+                        /* Text/标题文字 */
+
+                        color: #1D2129;
+                    }
+
+                    &_tip {
+                        margin-top: 12px;
+                        font-family: 'PingFang SC';
+                        font-style: normal;
+                        font-weight: 400;
+                        font-size: 16px;
+                        line-height: 100%;
+                        /* identical to box height, or 16px */
+
+                        letter-spacing: 0.03em;
+
+                        /* Text/次要文字 */
+
+                        color: #86909C;
+
+                        &--invalid {
+                            color: #F53F3F;
+
+                            span {
+                                color: #892DFF;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+                }
+
+                button {
+                    border-radius: 100px;
+                    width: 140px;
+                    margin-top: 32px;
+                }
+
+
+            }
+
+            &_or {
+
+                font-family: 'PingFang SC';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 24px;
+                line-height: 100%;
+                /* identical to box height, or 24px */
+
+                text-align: center;
+                letter-spacing: 0.03em;
+                color: #fff;
+            }
+        }
+    }
+
+    &_modal {
+        .ant-modal-body {
+            padding: 40px;
+        }
+    }
+
+    &_modal .ant-modal-content {
+        border-radius: 16px;
+
+        .leftButton,
+        .rightButton {
+            border: none;
+            height: 36px;
+            width: 36px;
+            transition: 1s;
+            background: rgba(29, 33, 41, 0.04);
+            border-radius: 100px;
+            color: #4E5969;
+            position: absolute;
+            top: 40%;
+            z-index: 10;
+            transform: translateY(-50%);
+        }
+
+
+        .leftButton {
+            left: -30px;
+        }
+
+        button {
+            border-radius: 100px;
+            width: 216px;
+            height: 40px;
+            margin-top: 30px;
+            padding-top: 12px;
+            padding-bottom: 12px;
+            font-family: 'PingFang SC';
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 100%;
+        }
+
+        .ant-btn-primary[disabled],
+        .ant-btn-primary[disabled]:hover,
+        .ant-btn-primary[disabled]:focus,
+        .ant-btn-primary[disabled]:active {
+            background-color: #CFAAFF;
+            color: #fff;
+        }
+    }
+
+}
+
+.entry-carousel {
+
+    .ant-card {
+        border: 1px solid #E5E6EB;
+        box-shadow: 0px 4px 10px rgba(50, 17, 77, 0.1);
+        border-radius: 4px;
+    }
+
+    .ant-card-cover {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1px;
+    }
+
+    .ant-card-cover img {
+        width: 140px;
+        height: 130px;
+    }
+
+    .ant-card-body {
+        height: 66px;
+        padding: 8px;
+        display: -webkit-box;
+        /* -webkit为了浏览器兼容而写的 */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        /* 在第N行的时候  变为省略号 N为可控变量*/
+        -webkit-box-orient: vertical;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        /* or 150% */
+
+
+        /* Text/描述文字 */
+
+        color: #4E5969;
+    }
+
+    .entry-carousel_card--selected {
+        border: 1px solid #892DFF;
+    }
+}

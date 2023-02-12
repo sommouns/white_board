@@ -110,9 +110,11 @@ export class fiveDescStore {
                 w.selected = !w.selected;
             }
         })
-        console.log(this.totalWords);
     }
     setGenerating = (val) => this.generating = val;
+    append = (word) => {
+        this.totalWords.push(word);
+    }
 }
 
 export default new fiveDescStore();

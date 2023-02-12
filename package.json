@@ -25,7 +25,7 @@
     "author": "jackple",
     "license": "MIT",
     "dependencies": {
-        "antd": "4.21.2",
+        "antd": "^4.24.7",
         "axios": "0.27.2",
         "bourbon": "7.2.0",
         "codemirror": "5.65.11",

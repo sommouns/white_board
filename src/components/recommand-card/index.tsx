@@ -345,10 +345,11 @@ export const TopicWordSelectCard: React.FC<ICardProps> = observer(({ cardInfo })
 })
 
 export const FiveDescGenerateCard: React.FC<ICardProps> = observer(({ cardInfo }) => {
-    const { totalWords, currentPage, setPage, currentWords, selectWord, setGenerating } = fiveDescStore;
+    const { totalWords, currentPage, setPage, currentWords, selectWord, setGenerating, append } = fiveDescStore;
     useEffect(() => {
         setPage(0);
     }, []);
+    const [popoverVisible, setPopoverVisible] = React.useState(false);
     const confirmFiveGenerate = () => {
         Modal.confirm({
             title: '当前版本的五点描述将被替换且无法找回，是否重新生成五点描述？',
@@ -369,6 +370,51 @@ export const FiveDescGenerateCard: React.FC<ICardProps> = observer(({ cardInfo }
             },
         })
     }
+    const options = [
+        {
+            id: '555',
+            val: 'party',
+            cn: '排队',
+            label: 'party',
+            value: '555',
+        },
+        {
+            id: '444',
+            val: 'pa',
+            cn: '排队',
+            label: 'party',
+            value: '444',
+        },
+        {
+            id: '111',
+            val: 'rty',
+            cn: '排队',
+            label: 'party',
+            value: '111',
+        },
+        {
+            id: '222',
+            val: 'prty',
+            cn: '排队',
+            label: 'party',
+            value: '222',
+        },
+        {
+            id: '333',
+            val: 'partyqweqe',
+            cn: '排队',
+            label: 'party',
+            value: '333',
+        },
+        {
+            id: '13',
+            val: 'party',
+            cn: '排队',
+            label: 'party',
+            value: '13',
+        },
+    ];
+    const [manualInputVal, setManualInputVal] = useState(null);
     const manualInput = (
         <div>
             <Select
@@ -376,40 +422,29 @@ export const FiveDescGenerateCard: React.FC<ICardProps> = observer(({ cardInfo }
                 style={{ width: 200 }}
                 placeholder="请输入词汇"
                 optionFilterProp="children"
-                filterOption={(input, option) => (option?.label ?? '').includes(input)}
-                filterSort={(optionA, optionB) =>
-                    (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+                filterOption={(input, option) =>
+                    (option?.label ?? '').toLowerCase().includes(input.toLowerCase())
                 }
-                options={[
-                    {
-                        value: '1',
-                        label: 'Not Identified',
-                    },
-                    {
-                        value: '2',
-                        label: 'Closed',
-                    },
-                    {
-                        value: '3',
-                        label: 'Communicated',
-                    },
-                    {
-                        value: '4',
-                        label: 'Identified',
-                    },
-                    {
-                        value: '5',
-                        label: 'Resolved',
-                    },
-                    {
-                        value: '6',
-                        label: 'Cancelled',
-                    },
-                ]}
+                options={options}
+                onChange={(val) => {
+                    setManualInputVal(val)
+                }}
+                value={manualInputVal}
             />
             <div className='flex justify-center mt-2'>
-                <Button className='mr-2' type='default'>取消</Button>
-                <Button type='primary'>保存</Button>
+                <Button className='mr-2' type='default' onClick={() => setPopoverVisible(false)}>取消</Button>
+                <Button type='primary' onClick={() => {
+                    if (!manualInputVal) return;
+                    let [target] = options.filter((v) => v.value === manualInputVal);
+                    append({
+                        id: target.id,
+                        val: target.val,
+                        cn: target.cn,
+                        selected: true
+                    });
+                    setPopoverVisible(false);
+                    setManualInputVal(null);
+                }}>保存</Button>
             </div>
         </div>
     );
@@ -436,10 +471,12 @@ export const FiveDescGenerateCard: React.FC<ICardProps> = observer(({ cardInfo }
                 </div>
                 <div>
                     <div className='flex items-center'>
-                        <div>已选词汇 <Badge count={22} color='#F2F3F5' /></div>
+                        <div>已选词汇 <Badge showZero count={totalWords.filter(w => w.selected).length} color='#F2F3F5' style={
+                            { color: '#86909C' }
+                        } /></div>
                         <div className='flex items-center ml-auto'>
-                            <Popover content={manualInput} title={null} trigger="click">
-                                <Button type='link' >+ 手动录入</Button>
+                            <Popover content={manualInput} title={null} trigger="click" open={popoverVisible}>
+                                <Button type='link' onClick={() => setPopoverVisible(true)}>+ 手动录入</Button>
                             </Popover>
                         </div>
                     </div>
