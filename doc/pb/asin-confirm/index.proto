@@ -1,0 +1,7 @@
+message Request {
+    required String asin = 1;
+}
+
+message Response{
+    optional String token = 1; // 用于作为后续编辑器识别的会话唯一标志
+}

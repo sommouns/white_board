@@ -1,0 +1,14 @@
+    message Request {
+        required String token = 1;
+    }
+
+message Response {
+    optional repeated Word regularWords = 1; // 上方常用卖点词
+    optional repeated Word generalWords = 2; // 下方所有推荐卖点词
+}
+
+message Word {
+    optional String en = 1;
+    optional String cn = 2;
+    optional String id = 3;
+}

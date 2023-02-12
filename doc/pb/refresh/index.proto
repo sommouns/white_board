@@ -1,0 +1,56 @@
+message Request {
+    optional String title = 1;
+    optional String content = 2;
+    optional String keyword = 3;
+    optional String token = 4;
+}
+
+message Response {
+    optional repeated Card titleCard = 1;
+    optional repeated Card contentCard = 2;
+}
+
+enum CARD_TYPE {
+    NORMAL = 1; // 普通卡片 （Dresses 单复数问题）
+    REPLACE = 2; // 替换类卡片（dresses -> dress）
+    STATIC = 3; // 静态卡片（比如标题过长）
+    TOPIC = 4; // 标题词汇推荐卡片
+    FIVE_DESC = 5; // 五点描述词汇推荐卡片
+}
+message Card {
+    optional String id = 1; // 卡片id
+    optional CARD_TYPE type = 2; // 卡片类型
+    optional String tagText = 3; // tag中的文字
+    optional String tagColor = 4; // tag的背景色
+    optional String title = 5; // 卡片的标题
+    optional String content = 6; // 卡片的内容
+    optional String word = 7; // 卡片类型为replace的时候，改进后的单词
+    optional String desc = 8; // 灰字描述
+    optional String rawWord = 9; // 卡片类型为replace的时候，改进前的单词
+    optional Position from = 10; // 在title或者content中的起始位置
+    optional Position to = 11; // 在title或者content中的结束位置
+    optional TopicCard topicCard = 12; //卡片类型为TOPIC时，竞品卡片信息
+    optional TopicTag topicTag = 13; // 标题分词（前序，中序，后序，视具体策略）
+}
+
+message Position {
+    optional Number line = 1;
+    optional Number ch = 2;
+}
+
+message TopicCard {
+    optional String cover = 1;
+    optional String title = 2;
+    optional String id = 3;
+}
+
+message TopicTag {
+    optional TagInfo front = 1;
+    optional TagInfo mid = 2;
+    optional TagInfo after = 3;
+}
+
+message TagInfo {
+    optional Position from = 1;
+    optional Position to = 2;
+}

@@ -1,0 +1,14 @@
+message Request {
+    optional String title = 1;
+    optional String titleTrans = 2; // title对应的中文翻译
+    optional String content = 3; // 换行符以 \n
+    optional String contentTrans = 4; // content对应的中文翻译
+    repeated KeyWord keywords = 5; // 侧边栏关键词
+    optional KeyWord currentKeyword = 6; // 当前选中的keyword
+}
+
+message KeyWord {
+    optional Boolean isUsual = 1; // 是否设为常用
+    optional Boolean isRecommand = 2; // 是否设为推荐
+    optional String value = 3; // 关键词
+}

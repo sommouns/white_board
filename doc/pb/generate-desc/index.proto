@@ -1,0 +1,13 @@
+message Request {
+    optional String token = 1;
+    repeated Word words = 2; // 卖点词 
+    optional String keyword = 3; // 当前关键词
+}
+
+message Word {
+    optional String en = 1;
+}
+
+message Response {
+    optional String content = 1;
+}
