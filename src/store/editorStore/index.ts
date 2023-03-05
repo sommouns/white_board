@@ -60,62 +60,90 @@ export class EditorStore {
             desc: '标题过长'
         },
         {
-            id: 14,
-            type: CARD_TYPE.TOPIC,
-            desc: '标题词汇推荐',
-            content: '',
-            collapsed: false,
-            topicCard: [
+            id: 17,
+            type: CARD_TYPE.RECOMMAND,
+            desc: '标题卖点词推荐',
+            recommandWords: [
                 {
-                    id: '1',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
-                },
-                {
-                    id: '2',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
-                },
-                {
-                    id: '3',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
-                },
-                {
-                    id: '4',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
-                },
-                {
-                    id: '5',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
-                },
-                {
-                    id: '6',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
-                },
-                {
-                    id: '7',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
-                },
-                {
-                    id: '8',
-                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-                    selected: false
+                    word: 'Casual',
+                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
+                    collapsed: true,
+                }, {
+                    word: 'Casual',
+                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
+                    collapsed: false,
+                }, {
+                    word: 'Casual',
+                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
+                    collapsed: false,
+                }, {
+                    word: 'Casual',
+                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
+                    collapsed: false,
+                }, {
+                    word: 'Casual',
+                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
+                    collapsed: false,
                 }
             ]
         },
+        // {
+        //     id: 14,
+        //     type: CARD_TYPE.TOPIC,
+        //     desc: '标题词汇推荐',
+        //     content: '',
+        //     collapsed: false,
+        //     topicCard: [
+        //         {
+        //             id: '1',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         },
+        //         {
+        //             id: '2',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         },
+        //         {
+        //             id: '3',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         },
+        //         {
+        //             id: '4',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         },
+        //         {
+        //             id: '5',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         },
+        //         {
+        //             id: '6',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         },
+        //         {
+        //             id: '7',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         },
+        //         {
+        //             id: '8',
+        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+        //             selected: false
+        //         }
+        //     ]
+        // },
         {
             id: 11,
             type: CARD_TYPE.NORMAL,
@@ -327,8 +355,9 @@ export class EditorStore {
             key: ETabIndex.TITLE,
         },
         {
-            label: `五点描述优化`,
+            label: `五点描述优化 (尚未开放)`,
             key: ETabIndex.CONTENT,
+            disabled: true,
         }
     ];
 

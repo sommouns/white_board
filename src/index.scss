@@ -29,4 +29,13 @@ svg path {
 
 .ant-layout-content {
     overflow: scroll;
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+.ant-layout-content::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
 }

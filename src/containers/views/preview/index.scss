@@ -77,6 +77,18 @@
     overflow-x: scroll;
 }
 
+.preview-editor::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+}
+
+.preview-editor {
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
 /* .preview-editor>div {
     width: 640px;
     overflow: hidden;
@@ -193,4 +205,24 @@
     text-decoration-color: rgba(137, 45, 255, 1);
     text-underline-offset: 4px;
     cursor: pointer;
+}
+
+.desc-editor--disabled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: -2px;
+    text-align: center;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 180%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .76);
+    color: #1D2129;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

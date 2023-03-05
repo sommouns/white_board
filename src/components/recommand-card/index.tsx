@@ -17,6 +17,7 @@ export enum CARD_TYPE {
     STATIC = 3,
     TOPIC = 4,
     FIVE_DESC = 5,
+    RECOMMAND = 6,
 }
 const text = `
   A dog is a type of domesticated animal.
@@ -56,6 +57,12 @@ export type CardInfo = {
         ch: number;
     };
     topicCard?: TopicCard[];
+    recommandWords?: RecommandWord[];
+}
+type RecommandWord = {
+    word: String;
+    list: String[];
+    collapsed?: Boolean;
 }
 type TopicCard = {
     cover: string;
@@ -343,6 +350,29 @@ export const TopicWordSelectCard: React.FC<ICardProps> = observer(({ cardInfo })
         </div>}
         onClick={handleClick} />
 })
+
+export const TitleWordRootRecommand: React.FC<{
+    cardInfo: CardInfo
+}> = observer(({ cardInfo }) => {
+    return (
+        <NormalCard content={
+            <div className='recommand-word'>
+                {cardInfo.recommandWords.map((recommandCard, idx) => {
+                    return (<div className="recommand-word_card">
+                        <div className="recommand-word_card_title flex flex-row">
+                            <div>根据<span style={{
+                                background: '#F5EDFF'
+                            }}>{recommandCard.word}</span>
+                                推荐</div>
+                            <div>收起</div>
+                        </div>
+                    </div>)
+                })}
+            </div>
+        } collapsed={false}
+            desc={cardInfo.desc} />
+    )
+});
 
 export const FiveDescGenerateCard: React.FC<ICardProps> = observer(({ cardInfo }) => {
     const { totalWords, currentPage, setPage, currentWords, selectWord, setGenerating, append } = fiveDescStore;

@@ -1,4 +1,4 @@
-import { Button, Card, Carousel, Input, Modal, Select } from 'antd';
+import { Button, Card, Carousel, Input, Modal, Select, Tooltip } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import { SwapOutlined, ReloadOutlined, LeftOutlined, RightOutlined, PlusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
@@ -6,9 +6,10 @@ import entryStore from '@store/entryStore';
 import sellingPointStore from '@store/sellingPointStore';
 import './index.scss';
 import history from '@shared/App/ht'
+import { CategoryModal } from '@components/category-modal/index';
 const { TextArea } = Input;
 export default observer(() => {
-    const { keywords, fetchKeywords, slideTimes, setUrlInputVisible } = entryStore;
+    const { keywords, fetchKeywords, slideTimes, setUrlInputVisible, category, setCategoryModalVisible, categoryModalVisible } = entryStore;
     const carouselEL = React.useRef(null);
 
     useEffect(() => {
@@ -49,7 +50,7 @@ export default observer(() => {
                                 帮你快速生成高质量的商品标题和五点描述
                             </div>
                             <div className='entry_wrapper_main_card_form'>
-                                <Select
+                                {/* <Select
                                     bordered={false}
                                     showSearch
                                     placeholder="请选择"
@@ -61,7 +62,12 @@ export default observer(() => {
                                     onChange={(v) => entryStore.setUploadKeyword(v)}
                                     value={entryStore.uploadKeyword}
                                     popupClassName="entry-selector_popup"
-                                />
+                                /> */}
+                                <div className='category-selector flex' onClick={() => setCategoryModalVisible(true)}>
+                                    {category ? <span className='truncate'>{category}</span> : <span className='category-selector_placeholder'>选择商品所属品类</span>}
+                                    <RightOutlined className='ml-auto' />
+                                </div>
+                                {categoryModalVisible && <CategoryModal visible={categoryModalVisible} />}
                                 <TextArea
                                     showCount
                                     bordered={false}
@@ -96,6 +102,7 @@ export default observer(() => {
                             <div className="entry_wrapper_main_card_title">
                                 我要优化
                             </div>
+
                             <div className="entry_wrapper_main_card_desc">
                                 从现有商品标题和五点描述进行优化
                             </div>
@@ -105,9 +112,11 @@ export default observer(() => {
                             </div>
                             <div className='flex-1'></div>
                             <div className='text-center mt-auto'>
-                                <Button type='primary' onClick={next}>
-                                    下一步
-                                </Button>
+                                <Tooltip title="功能尚未开放，敬请期待" placement='bottom'>
+                                    <Button type='primary' disabled onClick={next}>
+                                        下一步
+                                    </Button>
+                                </Tooltip>
                             </div>
                         </Card>
                     </div>

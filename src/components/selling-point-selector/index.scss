@@ -197,7 +197,11 @@
             &_main {
                 height: 220px;
                 overflow-y: scroll;
+                scrollbar-width: none;
+                /* firefox */
+                -ms-overflow-style: none;
 
+                /* IE 10+ */
                 &_card-wrapper {
                     &:nth-child(odd) {
                         margin-right: 8px;
@@ -217,6 +221,11 @@
                     letter-spacing: 0.02em;
                     color: #F53F3F;
                     margin-top: 6px;
+                }
+
+                &::-webkit-scrollbar {
+                    display: none;
+                    /* Chrome Safari */
                 }
 
                 &_card {

@@ -24,9 +24,9 @@ const Sidebar: React.FC = observer(() => {
                         </div>
                     ))
                 }
-                <div className={`preview_sidebar_keywords_val align-center flex justify-center`}>
+                {/* <div className={`preview_sidebar_keywords_val align-center flex justify-center`}>
                     <PlusOutlined />
-                </div>
+                </div> */}
             </div>
             <div className="preview_sidebar_user">
 

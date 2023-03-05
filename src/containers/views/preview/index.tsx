@@ -9,7 +9,7 @@ import ToolBox from '@components/tool-box'
 import { Button } from 'antd'
 import { SellingPointSelector } from '@components/selling-point-selector'
 export default observer(() => {
-
+    const descDisabled = true;
     return (
         <div className='preview flex'>
             <Sidebar />
@@ -25,8 +25,20 @@ export default observer(() => {
                     <div onClick={() => EditorStore.setFocusedEditorCard(EDITOR_CARD_NAME.TITLE)} className={`mb-4 ${EditorStore.focusedEditorCard === EDITOR_CARD_NAME.TITLE ? 'card-focused' : ''}`}>
                         <TitleEditor />
                     </div>
-                    <div onClick={() => EditorStore.setFocusedEditorCard(EDITOR_CARD_NAME.CONTENT)} className={`mb-4 ${EditorStore.focusedEditorCard === EDITOR_CARD_NAME.CONTENT ? 'card-focused' : ''}`}>
+                    <div onClick={() => !descDisabled && EditorStore.setFocusedEditorCard(EDITOR_CARD_NAME.CONTENT)} style={
+                        {
+                            position: 'relative'
+                        }
+                    } className={`mb-4 ${EditorStore.focusedEditorCard === EDITOR_CARD_NAME.CONTENT ? 'card-focused' : ''}`}>
                         <DescEditor />
+                        {
+                            descDisabled && <div className='desc-editor--disabled'>
+                                <div>
+                                    <div>功能尚未开放</div>
+                                    <div>敬请期待</div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
                 <div className='flex-1 pt-12'>

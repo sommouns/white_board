@@ -83,7 +83,7 @@ export const ToolBox: React.FC = () => {
         <div style={{ width: '530px' }}>
             <div className='tool-box_tab_warpper flex items-center'>
                 {
-                    tabs.map(tab => <div key={tab.key} className={`tool-box_tab_item ${tabIndex === tab.key && 'tool-box_tab_item--active'}`} onClick={() => handleTabChange(tab)}>{tab.label}</div>)
+                    tabs.map(tab => <div key={tab.key} className={`tool-box_tab_item ${tabIndex === tab.key && 'tool-box_tab_item--active'}`} onClick={() => !tab.disabled && handleTabChange(tab)}>{tab.label}</div>)
                 }
             </div>
             {
