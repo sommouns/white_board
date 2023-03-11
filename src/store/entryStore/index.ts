@@ -71,12 +71,12 @@ export class EntryStore {
         this.uploadFiveDesc = val;
     }
 
-    uploadValid = true;
+    uploadValid = false;
     setUploadValid = (v) => {
         this.uploadValid = v;
     }
     uploadNext = () => {
-        if (!this.uploadFiveDesc || !this.uploadKeyword) {
+        if (!this.uploadFiveDesc || !this.category) {
             console.error('uploadFiveDesc or uploadKeyword missed');
             return;
         }
@@ -182,32 +182,43 @@ export class EntryStore {
             this._tempCategory = this._category;
         }
     }
+    categoryModalLoading = false;
+    changeCategoryModalLoading = (val: boolean) => {
+        this.categoryModalLoading = val;
+    }
 
     currentCategoryList: Array<Category> = [];
-    selectCategory = (val) => {
+    selectCategory = async (val) => {
         if (this.tempCategoryCurrentChild && this.tempCategoryCurrentChild.level === val.level) {
             this._tempCategory.pop();
         }
         this._tempCategory.push(val);
         if (!val.isOver) {
-            this.currentCategoryList = this.getData(this.categoryLevel);
+            this.currentCategoryList = await this.getData(this.categoryLevel);
         }
     }
 
     getData(level) {
-        if (level === 0) {
-            return mockDataLevel0;
-        }
-        if (level === 1) {
-            return mockDataLevel1;
-        }
-        if (level === 2) {
-            return mockDataLevel2;
-        }
-        if (level === 3) {
-            return mockDataLevel3;
-        }
-        return mockDataLevel0;
+        this.changeCategoryModalLoading(true)
+        return new Promise<Category[]>((resolve) => {
+            setTimeout(() => {
+                this.changeCategoryModalLoading(false)
+                if (level === 0) {
+                    return resolve(mockDataLevel0);
+                }
+                if (level === 1) {
+                    return resolve(mockDataLevel1);
+                }
+                if (level === 2) {
+                    return resolve(mockDataLevel2);
+                }
+                if (level === 3) {
+                    return resolve(mockDataLevel3);
+                }
+
+                resolve(mockDataLevel0)
+            }, 1500);
+        })
     }
 
     get categoryLevel() {
@@ -248,14 +259,30 @@ export class EntryStore {
         return false;
     }
 
-    handleClickWordTab(category: Category, index: number) {
+    async handleClickWordTab(category: Category, index: number) {
         this._tempCategory = this._tempCategory.slice(0, index + 1);
-        this.currentCategoryList = this.getData(this._tempCategory.length);
+        this.currentCategoryList = await this.getData(this._tempCategory.length);
     }
 
-    clearTemp = () => {
+    clearTemp = async () => {
         this._tempCategory = [];
-        this.currentCategoryList = this.getData(0)
+        this.currentCategoryList = await this.getData(0)
+    }
+
+    rootSelectorModalVisible = true;
+    setRootSelectorModalVisible = (v) => this.rootSelectorModalVisible = v;
+
+    rootWordInput = '';
+    setRootWordInput = (v) => this.rootWordInput = v;
+
+    rootList = [`Women's Tops, Tees & Blouses`, `Women's Skirts`, `Women's Shorts`, `Women's Suiting & Blazers`, `Women's Jumpsuits, Rompers & Overalls`, `Shoe, Jewelry & Watch Accessories`];
+    fetchRootList = (v) => {
+        // TODO AJAX
+        this.rootList = v;
+    }
+    selectedRoot = '';
+    setSelectedRoot = (v) => {
+        this.selectedRoot = v;
     }
 }
 

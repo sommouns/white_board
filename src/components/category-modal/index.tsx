@@ -1,4 +1,4 @@
-import { Button, Modal } from 'antd';
+import { Button, Modal, Spin } from 'antd';
 import { observer } from 'mobx-react-lite';
 import React, { useEffect, useState } from 'react';
 import entryStore from '@store/entryStore';
@@ -40,16 +40,18 @@ export const CategoryModal: React.FC<{
                     ) : <span className='category-modal_main_input--placeholder'>请选择</span>}</div>
                     <CloseCircleOutlined onClick={() => entryStore.clearTemp()} className='ml-auto cursor-pointer' style={{ color: '#86909C' }} />
                 </div>
-                <div className='category-modal_main_options'>
-                    {currentCategoryList.map((category) => (<div onClick={() => selectCategory(category)} key={category.en + category.cn}
-                        className={`category-modal_main_item flex items-center 
+                <Spin spinning={entryStore.categoryModalLoading}>
+                    <div className='category-modal_main_options'>
+                        {currentCategoryList.map((category) => (<div onClick={() => selectCategory(category)} key={category.en + category.cn}
+                            className={`category-modal_main_item flex items-center 
                             ${entryStore.tempCategoryCurrentChild &&
-                            ((entryStore.tempCategoryCurrentChild.en + entryStore.tempCategoryCurrentChild.level) === (category.en + category.level)) &&
-                            'category-modal_main_item--active'}`}>
-                        {lang === LangType.EN ? category.en : category.cn}
-                        {!category.isOver && <RightOutlined style={{ color: '#86909C' }} className='ml-auto' />}
-                    </div>))}
-                </div>
+                                ((entryStore.tempCategoryCurrentChild.en + entryStore.tempCategoryCurrentChild.level) === (category.en + category.level)) &&
+                                'category-modal_main_item--active'}`}>
+                            {lang === LangType.EN ? category.en : category.cn}
+                            {!category.isOver && <RightOutlined style={{ color: '#86909C' }} className='ml-auto' />}
+                        </div>))}
+                    </div>
+                </Spin>
             </div>
 
             <div className='category-modal_btns flex items-center justify-center'>

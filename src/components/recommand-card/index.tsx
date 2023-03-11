@@ -1,15 +1,15 @@
-import { Badge, Button, Card, Carousel, Collapse, Input, message, Modal, Pagination, Popover, Select, Space, Spin, Tag, Tooltip } from 'antd';
-import React, { MouseEventHandler, ReactElement, useEffect, useState } from 'react'
-import { SwapOutlined, ReloadOutlined, LeftOutlined, RightOutlined, PlusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
+import { Badge, Button, Card, Collapse, message, Modal, Pagination, Popover, Select, Space, Spin, Tag, Tooltip } from 'antd';
+import React, { MouseEventHandler, ReactElement, useCallback, useEffect, useState } from 'react'
+import { DeleteOutlined, AppstoreAddOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import image from '../../assets/images/arrow.jpg';
 import './index.scss';
 import editorStore from '@store/editorStore';
 import topicStore from '@store/topicStore';
 import fiveDescStore from '@store/fiveDescStore';
-import Meta from 'antd/lib/card/Meta';
-import useBus, { dispatch } from 'use-bus';
+import { dispatch } from 'use-bus';
 import { EVENTS } from '@constants/index';
 import { observer } from 'mobx-react-lite';
+import OrderTooltipImg from '@assets/images/Tooltip-center.png';
 const { Panel } = Collapse;
 export enum CARD_TYPE {
     NORMAL = 1,
@@ -25,14 +25,6 @@ const text = `
   it can be found as a welcome guest in many households across the world.
 `;
 
-const contentStyle: React.CSSProperties = {
-    margin: 0,
-    height: '160px',
-    color: '#fff',
-    lineHeight: '160px',
-    textAlign: 'center',
-    background: '#364d79',
-};
 interface ICardProps {
     cardInfo: CardInfo;
     onClick?: MouseEventHandler<HTMLDivElement>;
@@ -59,10 +51,18 @@ export type CardInfo = {
     topicCard?: TopicCard[];
     recommandWords?: RecommandWord[];
 }
-type RecommandWord = {
-    word: String;
-    list: String[];
-    collapsed?: Boolean;
+export type RecommandWord = {
+    word: string;
+    list: string[];
+    collapsed?: boolean;
+    from?: {
+        line: number;
+        ch: number;
+    };
+    to?: {
+        line: number;
+        ch: number;
+    };
 }
 type TopicCard = {
     cover: string;
@@ -105,7 +105,7 @@ export const NormalCard: React.FC<{
     content?: ReactElement;
     collapsed?: boolean;
     word?: string;
-    desc?: string;
+    desc?: string | ReactElement;
     rightTopBtn?: ReactElement;
     onClick?: MouseEventHandler<HTMLDivElement>;
 }> = (props) => {
@@ -116,14 +116,14 @@ export const NormalCard: React.FC<{
                     (
                         <div className='flex items-center'>
                             <div className='list-dot'></div>
-                            {props.word && <span className='word'>{props.word}</span>}
-                            <span className='desc'>{props.desc}</span>
+                            {props.word && <span className='word cursor-pointer'>{props.word}</span>}
+                            <span className='desc cursor-pointer'>{props.desc}</span>
                         </div>
                     ) :
                     (<div>
                         <div className='flex items-center'>
                             <div className='list-dot'></div>
-                            <span className='desc'>{props.desc}</span>
+                            <span className='desc cursor-pointer'>{props.desc}</span>
                             {props.rightTopBtn}
                         </div>
                         <div className='flex items-center mt-5'>
@@ -144,6 +144,19 @@ export const TopicWordSelectCard: React.FC<ICardProps> = observer(({ cardInfo })
     const carouselEL = React.useRef(null);
     const { slideTimes, urlInputVisible, url, btnDisabled, currentId, vocVisible, setSlideTimes, setUrlInputVisible, setUrl, setBtnDisabled, setCurrentId, setVocVisible, refreshing, setRefreshing } = topicStore;
     const [messageApi, contextHolder] = message.useMessage();
+    const toClipBoard = (val) => {
+        const inputo = document.createElement("input");
+        document.body.appendChild(inputo);
+        inputo.value = val;
+        inputo.setAttribute('readOnly', 'readOnly')
+        inputo.select();
+        document.execCommand("Copy");
+        document.body.removeChild(inputo);
+        messageApi.open({
+            type: 'success',
+            content: '词汇已复制到剪贴板',
+        });
+    }
     useEffect(() => {
         if (slideTimes >= 3) {
             setUrlInputVisible(true);
@@ -168,19 +181,6 @@ export const TopicWordSelectCard: React.FC<ICardProps> = observer(({ cardInfo })
         setUrl('');
     }
 
-    const toClipBoard = (val) => {
-        const inputo = document.createElement("input");
-        document.body.appendChild(inputo);
-        inputo.value = val;
-        inputo.setAttribute('readOnly', 'readOnly')
-        inputo.select();
-        document.execCommand("Copy");
-        document.body.removeChild(inputo);
-        messageApi.open({
-            type: 'success',
-            content: '词汇已复制到剪贴板',
-        });
-    }
 
     const handleCpChange = (val) => {
         if (!val) {
@@ -190,32 +190,32 @@ export const TopicWordSelectCard: React.FC<ICardProps> = observer(({ cardInfo })
             });
             return;
         }
-        let from = {};
-        let to = {};
-        let id = '';
-        if (+val === 1) {
-            from = editorStore.topicTag.front.from;
-            to = editorStore.topicTag.front.to;
-            id = 'front';
-        } else if (+val === 2) {
-            from = editorStore.topicTag.mid.from;
-            to = editorStore.topicTag.mid.to;
-            id = 'mid';
-        } else if (+val === 3) {
-            from = editorStore.topicTag.after.from;
-            to = editorStore.topicTag.after.to;
-            id = 'after';
-        }
-        dispatch({
-            type: EVENTS.clickTopic,
-            tag: 'title',
-            mark: {
-                from,
-                to,
-                class: 'topic-mark',
-                id,
-            }
-        })
+        // let from = {};
+        // let to = {};
+        // let id = '';
+        // if (+val === 1) {
+        //     from = editorStore.topicTag.front.from;
+        //     to = editorStore.topicTag.front.to;
+        //     id = 'front';
+        // } else if (+val === 2) {
+        //     from = editorStore.topicTag.mid.from;
+        //     to = editorStore.topicTag.mid.to;
+        //     id = 'mid';
+        // } else if (+val === 3) {
+        //     from = editorStore.topicTag.after.from;
+        //     to = editorStore.topicTag.after.to;
+        //     id = 'after';
+        // }
+        // dispatch({
+        //     type: EVENTS.clickTopic,
+        //     tag: 'title',
+        //     mark: {
+        //         from,
+        //         to,
+        //         class: 'topic-mark',
+        //         id,
+        //     }
+        // })
     }
 
     const refresh = () => {
@@ -225,7 +225,7 @@ export const TopicWordSelectCard: React.FC<ICardProps> = observer(({ cardInfo })
         }, 1000);
     }
     return <NormalCard title={<span className='title'>{cardInfo.title}</span>}
-        content={vocVisible ? <>
+        content={<>
             {!refreshing ? (<Space direction="vertical">
                 {contextHolder}
                 <Collapse collapsible="header" defaultActiveKey={['1']} expandIcon={() => <div></div>} accordion onChange={(val) => handleCpChange(val)}>
@@ -265,115 +265,96 @@ export const TopicWordSelectCard: React.FC<ICardProps> = observer(({ cardInfo })
                 </Collapse>
             </Space>) : <div className='flex flex-col items-center h-52 justify-center'>
                 <Spin />推荐词汇生成中</div>}
-        </> : <>
-            <div className=''>
-                <div className='topic-title font-bold text-center mb-6'>
-                    为保证推荐准确度，请选择与您的商品最相似的竞品
-                </div>
-                <div className='relative'>
-                    <Button
-                        className="leftButton"
-                        style={{ left: -14 }}
-                        onClick={() => {
-                            carouselEL.current.prev();
-                            if (!currentId) {
-                                setSlideTimes(slideTimes + 1);
-                            }
-                        }}
-                        icon={<LeftOutlined />}
-                    ></Button>
-                    <Button
-                        className="rightButton"
-                        style={{ right: -14 }}
-                        onClick={() => {
-                            carouselEL.current.next();
-                            if (!currentId) {
-                                setSlideTimes(slideTimes + 1);
-                            }
-                        }}
-                        icon={<RightOutlined />}
-                    ></Button>
-                    <Carousel className='topic-carousel mb-4' slidesPerRow={3} dots={false} style={{ margin: "30px 20px 0px 20px", paddingTop: 0 }} ref={carouselEL}>
-                        {
-                            cardInfo.topicCard.map(tc => (
-                                <Card
-                                    hoverable
-                                    style={{ width: 240 }}
-                                    cover={<img alt="example" src={tc.cover}
-                                    />}
-                                    className={`topic-carousel_card ${currentId === tc.id && 'topic-carousel_card--selected'}`}
-                                    onClick={() => handleCardClick(tc)}
-                                    key={tc.id}
-                                >
-                                    <div className='text-3'>
-                                        {tc.title}
-                                    </div>
-                                </Card>
-                            ))
-                        }
-                    </Carousel>
-                </div>
-                {urlInputVisible && <div>
-                    <div className='topic-title font-bold text-center mb-4 mt-4'>
-                        没有找到同类竞品？
-                    </div>
-                    <div className='urlInput'>
-                        <Input onChange={(e) => {
-                            setUrl(e.target.value);
-                        }} placeholder="输入竞品链接，建议选择搜索排序靠前的竞品" />
-                    </div>
-                </div>}
-                <div>
-                    <button onClick={() => {
-                        setVocVisible(true);
-                        handleCpChange("1");
-                    }} className={`topic-button ${btnDisabled ? 'topic-button--disabled' : ''}`}>选好了，开始推荐</button>
-                </div>
-            </div></>}
-        collapsed={false}
-        desc={cardInfo.desc}
-        rightTopBtn={<div className='flex items-center ml-auto' style={{ color: '#86909C' }}>
-            {vocVisible &&
-                <>
-                    <div className='mr-4 flex items-center cursor-pointer' onClick={() => {
-                        setVocVisible(false)
-                        setCurrentId('');
-                        setSlideTimes(0);
-                        setUrlInputVisible(false);
-                        setUrl('');
-                    }}>修改竞品<SwapOutlined className='ml-1' /></div>
-                    <div className='flex items-center cursor-pointer' onClick={() => {
-                        refresh()
-                    }}>刷新<ReloadOutlined className='ml-1' /></div>
-                </>
-            }
-        </div>}
+        </>}
+        collapsed={cardInfo.collapsed}
+        desc={<div className='flex items-center'>
+            {cardInfo.desc}<Tooltip overlayStyle={{ maxWidth: '560px' }} color="#fff" title={<div style={{
+                width: '520px',
+            }}>
+                <img src={OrderTooltipImg} style={
+                    {
+                        width: '520px',
+                    }
+                } />
+            </div>}><QuestionCircleOutlined className='ml-1' /></Tooltip>
+        </div >}
+        // rightTopBtn={<div className='flex items-center ml-auto' style={{ color: '#86909C' }}>
+        //     {vocVisible &&
+        //         <>
+        //             <div className='flex items-center cursor-pointer' onClick={() => {
+        //                 refresh()
+        //             }}>刷新<ReloadOutlined className='ml-1' /></div>
+        //         </>
+        //     }
+        // </div>}
         onClick={handleClick} />
 })
 
-export const TitleWordRootRecommand: React.FC<{
-    cardInfo: CardInfo
-}> = observer(({ cardInfo }) => {
+export const TitleWordRootRecommand: React.FC<ICardProps & {
+    onTabClick?: (cardInfo: CardInfo, recommandCard: RecommandWord) => void;
+}> = observer(({ cardInfo, onTabClick }) => {
+    const toClipBoard = useCallback((val) => {
+        const inputo = document.createElement("input");
+        document.body.appendChild(inputo);
+        inputo.value = val;
+        inputo.setAttribute('readOnly', 'readOnly')
+        inputo.select();
+        document.execCommand("Copy");
+        document.body.removeChild(inputo);
+        message.success('词汇已复制到剪贴板');
+    }, []);
+
+    const handleTabClick = (cardInfo: CardInfo, recommandCard: RecommandWord, recommandWords: RecommandWord[]) => {
+        editorStore.toggleRecommandWordTabCollapse(recommandCard, recommandWords);
+        console.log(onTabClick);
+        onTabClick(cardInfo, recommandCard);
+    }
     return (
         <NormalCard content={
             <div className='recommand-word'>
                 {cardInfo.recommandWords.map((recommandCard, idx) => {
-                    return (<div className="recommand-word_card">
-                        <div className="recommand-word_card_title flex flex-row">
-                            <div>根据<span style={{
-                                background: '#F5EDFF'
-                            }}>{recommandCard.word}</span>
+                    return (<div className="recommand-word_card" key={idx}>
+                        <div className={`recommand-word_card_title flex flex-row items-center 
+                            ${recommandCard.collapsed && 'recommand-word_card_title--collapsed'}`}
+                            onClick={() => handleTabClick(cardInfo, recommandCard, cardInfo.recommandWords)}>
+                            <div className='recommand-word_card_title-content cursor-pointer flex items-center'>根据
+                                <span> {recommandCard.word} </span>
                                 推荐</div>
-                            <div>收起</div>
+                            <Tooltip title={"删除推荐"}>
+                                <DeleteOutlined className='ml-auto cursor-pointer'
+                                    onClick={() => editorStore.removeRecommandWordTab(recommandCard, cardInfo.id)}
+                                    style={{
+                                        color: '#86909C'
+                                    }} />
+                            </Tooltip>
                         </div>
+                        {
+                            !recommandCard.collapsed && <>
+                                <div className="recommand-word_card_list">
+                                    {
+                                        recommandCard.list.map((tag, idx) => {
+                                            return (
+                                                <Tooltip key={idx} placement="top" title={"点击复制"}>
+                                                    <Tag className="topicTag" color={"#F5EDFF"} onClick={() => toClipBoard(tag)}>{tag}</Tag>
+                                                </Tooltip>
+                                            )
+                                        })
+                                    }
+                                </div>
+                                <div onClick={() => editorStore.recommandWordLoadmore(recommandCard)} className='recommand-word_card_more flex items-center justify-center cursor-pointer'>
+                                    <AppstoreAddOutlined className='mr-1' />更多卖点词
+                                </div>
+                            </>
+                        }
                     </div>)
                 })}
             </div>
-        } collapsed={false}
+        } collapsed={cardInfo.collapsed}
             desc={cardInfo.desc} />
     )
 });
 
+// 五点描述生成卡片
 export const FiveDescGenerateCard: React.FC<ICardProps> = observer(({ cardInfo }) => {
     const { totalWords, currentPage, setPage, currentWords, selectWord, setGenerating, append } = fiveDescStore;
     useEffect(() => {

@@ -24,6 +24,16 @@ export default observer(() => {
         sellingPointStore.setModalVisible(true);
         history.push('/preview');
     }
+    const cancelRootModal = () => {
+        entryStore.setRootSelectorModalVisible(false);
+        entryStore.setRootWordInput('');
+    }
+
+    const confirmRootModal = () => {
+        entryStore.setRootSelectorModalVisible(false);
+        entryStore.setRootWordInput('');
+        next()
+    }
     return (
         <div className='entry'>
             <div className="entry_wrapper">
@@ -90,7 +100,7 @@ export default observer(() => {
 
                             </div><div className='flex-1'></div>
                             <div className='text-center'>
-                                <Button type='primary' onClick={() => entryStore.uploadNext()} disabled={!(entryStore.uploadValid && entryStore.uploadFiveDesc && entryStore.uploadKeyword)}>
+                                <Button type='primary' onClick={() => next()} disabled={!(entryStore.uploadValid && entryStore.uploadFiveDesc && entryStore.category)}>
                                     下一步
                                 </Button>
                             </div>
@@ -120,8 +130,8 @@ export default observer(() => {
                             </div>
                         </Card>
                     </div>
-
-                    <Modal
+                    {/* 竞品选择弹窗 */}
+                    {/* <Modal
                         centered
                         open={entryStore.competitorSelectorVisible}
                         onOk={() => entryStore.setCompetitorSelectorVisible(false)}
@@ -199,7 +209,48 @@ export default observer(() => {
                             </div>
                         </div>
 
+                    </Modal> */}
+                    <Modal
+                        centered
+                        open={entryStore.rootSelectorModalVisible}
+                        width={600}
+                        className="entry_modal"
+                        title={null}
+                        footer={null}
+                        closable={false}
+                    >
+                        <div className='text-center flex justify-center items-center text-xl font-medium'>请选择商品词根<Tooltip title={"test code here"}>
+                            <QuestionCircleOutlined className='ml-2' />
+                        </Tooltip></div>
+                        <div className='mt-9'>
+                            {
+                                entryStore.rootList.map((v, idx) => {
+                                    return (<div className={`text-center entry_modal_root-card ${entryStore.selectedRoot === v && 'entry_modal_root-card--selected'}`} key={idx} onClick={() => entryStore.setSelectedRoot(v)}>{v}</div>)
+                                })
+                            }
+                        </div>
+                        <div className='mt-4'>
+                            <div style={{
+                                color: '#4E5969',
+                                fontSize: '14px'
+                            }}>没有找到对应词根？</div>
+                            <div className='entry_wrapper_main_card_form mt-3'>
+                                <Input style={{
+                                    padding: '5px 12px',
+                                    fontSize: '14px'
+                                }} bordered={false} placeholder='输入商品链接或商品ASIN' className='text-sm' />
+                            </div>
+                        </div>
+                        <div className='text-center'>
+                            <Button className='mr-3' style={{
+                                width: '140px'
+                            }} onClick={() => cancelRootModal()}>取消</Button>
+                            <Button style={{
+                                width: '140px'
+                            }} type='primary' onClick={() => confirmRootModal()}>选好了</Button>
+                        </div>
                     </Modal>
+
                 </div>
             </div>
 

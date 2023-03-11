@@ -54,20 +54,7 @@
     height: auto;
 }
 
-.error-mark {
-    text-decoration: underline;
-    text-decoration-color: #F53F3F;
-    text-underline-offset: 4px;
-    cursor: pointer;
-}
 
-.error-mark:hover {
-    background: rgba(245, 63, 63, .15)
-}
-
-.error-mark--selected {
-    background: rgba(245, 63, 63, .15)
-}
 
 .preview-editor .ant-card {
     border-radius: 8px;
@@ -225,4 +212,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+// mark样式
+.error-mark {
+    text-decoration: underline;
+    text-decoration-color: #F53F3F;
+    text-underline-offset: 4px;
+    cursor: pointer;
+
+    &:hover,
+    &--selected {
+        background: rgba(245, 63, 63, .15)
+    }
+}
+
+.recommand-mark {
+    text-decoration: underline;
+    text-decoration-color: rgba(137, 45, 255, 1);
+    text-underline-offset: 4px;
+    cursor: pointer;
+
+    &:hover,
+    &--selected {
+        background-color: rgba(137, 45, 255, .1);
+    }
 }

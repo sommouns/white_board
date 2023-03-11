@@ -1,5 +1,5 @@
 import { MEditor, MTextMarker } from '@components/m-code-mirror';
-import { CardInfo, CARD_TYPE } from '@components/recommand-card';
+import { CardInfo, CARD_TYPE, RecommandWord } from '@components/recommand-card';
 import { EVENTS } from '@constants/index';
 import CodeMirror, { Editor, Position, TextMarker } from 'codemirror'
 import { makeAutoObservable } from 'mobx'
@@ -10,6 +10,10 @@ export enum EDITOR_CARD_NAME {
     TITLE,
     CONTENT,
     NONE
+}
+export enum eMarkType {
+    Error = 'error-mark',
+    Recommand = 'recommand-mark',
 }
 export type keyword = {
     recommand: boolean;
@@ -56,7 +60,6 @@ export class EditorStore {
             type: CARD_TYPE.STATIC,
             title: '建议标题缩减至 15-20 个单词以内',
             content: '当单词数处于 15-20 以内时，商品搜索排序更可能排在前 20 位',
-            collapsed: false,
             desc: '标题过长'
         },
         {
@@ -66,84 +69,89 @@ export class EditorStore {
             recommandWords: [
                 {
                     word: 'Casual',
+                    list: ['sleeveless', 'strethcable', 'latern sleeve', 'sleeveless', 'strethcable', 'latern sleeve', 'sleeveless', 'strethcable', 'latern sleeve'],
+                    collapsed: true,
+                    from: {
+                        line: 0,
+                        ch: 65
+                    },
+                    to: {
+                        line: 0,
+                        ch: 71
+                    }
+                }, {
+                    word: 'Lantern Sleeve',
                     list: ['sleeveless', 'strethcable', 'latern sleeve'],
                     collapsed: true,
-                }, {
-                    word: 'Casual',
-                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
-                    collapsed: false,
-                }, {
-                    word: 'Casual',
-                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
-                    collapsed: false,
-                }, {
-                    word: 'Casual',
-                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
-                    collapsed: false,
-                }, {
-                    word: 'Casual',
-                    list: ['sleeveless', 'strethcable', 'latern sleeve'],
-                    collapsed: false,
+                    from: {
+                        line: 0,
+                        ch: 47
+                    },
+                    to: {
+                        line: 0,
+                        ch: 61
+                    }
+                }
+            ],
+            collapsed: false,
+        },
+        {
+            id: 14,
+            type: CARD_TYPE.TOPIC,
+            desc: '标题词汇推荐',
+            content: '',
+            collapsed: false,
+            topicCard: [
+                {
+                    id: '1',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
+                },
+                {
+                    id: '2',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
+                },
+                {
+                    id: '3',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
+                },
+                {
+                    id: '4',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
+                },
+                {
+                    id: '5',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
+                },
+                {
+                    id: '6',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
+                },
+                {
+                    id: '7',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
+                },
+                {
+                    id: '8',
+                    cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
+                    title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
+                    selected: false
                 }
             ]
         },
-        // {
-        //     id: 14,
-        //     type: CARD_TYPE.TOPIC,
-        //     desc: '标题词汇推荐',
-        //     content: '',
-        //     collapsed: false,
-        //     topicCard: [
-        //         {
-        //             id: '1',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         },
-        //         {
-        //             id: '2',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         },
-        //         {
-        //             id: '3',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         },
-        //         {
-        //             id: '4',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         },
-        //         {
-        //             id: '5',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         },
-        //         {
-        //             id: '6',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         },
-        //         {
-        //             id: '7',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         },
-        //         {
-        //             id: '8',
-        //             cover: 'https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png',
-        //             title: 'Pink Queen Womens Loose Turtleneck Oversize Long Pullover Sweater Dress',
-        //             selected: false
-        //         }
-        //     ]
-        // },
         {
             id: 11,
             type: CARD_TYPE.NORMAL,
@@ -160,7 +168,7 @@ export class EditorStore {
             },
             to: {
                 line: 0,
-                ch: 15,
+                ch: 14,
             }
         },
         {
@@ -180,7 +188,7 @@ export class EditorStore {
             },
             to: {
                 line: 0,
-                ch: 22,
+                ch: 20,
             }
         }
     ];
@@ -324,30 +332,43 @@ export class EditorStore {
             selected: false,
         }
     ];
-    titleMarks = [
-        {
-            id: 11,
-            from: {
-                line: 0,
-                ch: 9,
-            },
-            to: {
-                line: 0,
-                ch: 14,
-            }
-        },
-        {
-            id: 12,
-            from: {
-                line: 0,
-                ch: 15,
-            },
-            to: {
-                line: 0,
-                ch: 20,
-            }
+
+    get titleMarks(): Array<{
+        id: string;
+        markType: eMarkType;
+        from: {
+            line: number;
+            ch: number;
+        };
+        to: {
+            line: number;
+            ch: number;
         }
-    ];
+    }> {
+        const val = this.titleCardList.reduce((total, val, idx) => {
+            if (!total) {
+                total = [];
+            }
+            // 标题卖点词推荐
+            if (val.recommandWords) {
+                const marks = val.recommandWords.map((v) => ({ from: v.from, to: v.to, markType: eMarkType.Recommand, id: val.id }));
+                total = [...total, ...marks];
+                return total;
+            }
+            if (val.from && val.to) {
+                // 普通卡片
+                total.push({
+                    id: val.id,
+                    from: val.from,
+                    to: val.to,
+                    markType: eMarkType.Error,
+                });
+            }
+            return total;
+        }, []);
+        console.log(val)
+        return val;
+    }
     tabIndex = ETabIndex.TITLE;
     tabs = [
         {
@@ -399,16 +420,25 @@ export class EditorStore {
         this.clearSelectedErrorMask();
 
     }
-    selectCardWithId = (id) => {
+    selectCardWithId = (id, text) => {
         const arr = this.cardList.map(card => {
             let obj = { ...card };
-            if (!obj.from) {
-                obj.collapsed = true;
+            if (obj.type === CARD_TYPE.STATIC) {
                 return obj;
             }
-            obj.collapsed = obj.id !== id;
+
+            if (obj.type === CARD_TYPE.RECOMMAND) {
+                obj.collapsed = false;
+            } else {
+                obj.collapsed = obj.id !== id;
+            }
+            if (obj.id === id && obj.recommandWords) {
+                obj.recommandWords.forEach(word => {
+                    word.collapsed = !(word.word === text);
+                });
+            }
             return obj;
-        })
+        });
         setTimeout(() => {
             this.cardList = [...arr];
         }, 0);
@@ -416,11 +446,16 @@ export class EditorStore {
     selectCardWithPos = (line, ch) => {
         const arr = this.cardList.map(card => {
             let obj = { ...card };
-            if (!obj.from) {
-                obj.collapsed = true;
+            const isMatch = obj.from.line === line && obj.from.ch === ch;
+            if (obj.type === CARD_TYPE.STATIC) {
                 return obj;
             }
-            obj.collapsed = !(obj.from.line === line && obj.from.ch === ch)
+
+            if (obj.type === CARD_TYPE.RECOMMAND) {
+                obj.collapsed = false;
+            } else {
+                obj.collapsed = !isMatch;
+            }
             return obj;
         })
         setTimeout(() => {
@@ -428,6 +463,7 @@ export class EditorStore {
         }, 0);
     }
     setTitleCM = (cm: MEditor) => {
+        console.log(cm)
         this.titleCM = cm;
     }
     setContentCM = (cm: MEditor) => {
@@ -458,9 +494,43 @@ export class EditorStore {
                 editor: this.contentCM.editor
             }
         });
+
+
     }
     setTopicTag = () => {
 
+    }
+
+    removeRecommandWordTab = (w: RecommandWord, id: number) => {
+        const list = this.titleCardList;
+        const card = list.find(item => item.id === id);
+        if (!card) {
+            console.error('[removeRecommandWordTab]card not exist');
+            return;
+        }
+        card.recommandWords = card.recommandWords.filter(word => word.word !== w.word);
+        this.titleCardList = list;
+    }
+
+    toggleRecommandWordTabCollapse = (word: RecommandWord, recommandWords: RecommandWord[]) => {
+        recommandWords.forEach(val => val.collapsed = true)
+        word.collapsed = !word.collapsed;
+    }
+
+    recommandWordLoadmore = (recommandCard: RecommandWord) => {
+        recommandCard.list = [...recommandCard.list, 'ceshi', 'abc'];
+    }
+    titleContent = '';
+    setTitleContent(val) {
+        console.log(val);
+        this.titleContent = val;
+    }
+
+    get titleContentWordCount() {
+        if (!this.titleContent) {
+            return 0;
+        }
+        return this.titleContent.split(' ').length;
     }
 }
 

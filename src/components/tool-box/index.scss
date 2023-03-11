@@ -45,3 +45,16 @@
         border-radius: 4px;
     }
 }
+
+.tool-box_card {
+    max-height: calc(100vh - 48px - 44px);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome Safari */
+    }
+}

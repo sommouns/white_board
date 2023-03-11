@@ -395,3 +395,88 @@
         border: 1px solid #892DFF;
     }
 }
+
+.recommand-word_card {
+    background: #FFFFFF;
+    border: 1px solid #E5E6EB;
+    border-radius: 4px;
+    padding: 0px;
+
+    &+& {
+        margin-top: 8px;
+    }
+
+    .recommand-word_card_title {
+        padding: 20px 16px;
+    }
+
+    .recommand-word_card_title--collapsed {
+        background: #F7F8FA;
+
+        &:hover,
+        &:active {
+            background-color: #EEF0F4;
+        }
+    }
+
+    .recommand-word_card_title-content {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        color: #4E5969;
+    }
+
+    .recommand-word_card_list {
+        margin-left: 16px;
+        margin-right: 16px;
+        max-height: 220px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        /* firefox */
+        -ms-overflow-style: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+            /* Chrome Safari */
+        }
+    }
+
+    .recommand-word_card_more {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        color: #86909C;
+        margin-top: 16px;
+        margin-bottom: 20px;
+    }
+
+    .recommand-word_card_more:hover,
+    .recommand-word_card_more:active {
+        color: #892DFF;
+    }
+}
+
+.entry_modal_root-card {
+    display: inline-block;
+    background: #F7F8FA;
+    border-radius: 4px;
+    padding: 24px;
+    width: 256px;
+    margin-bottom: 8px;
+    cursor: pointer;
+
+    &--selected {
+        background: #F5EDFF;
+        border: 1px solid #892DFF;
+        border-radius: 4px;
+        color: #892DFF;
+    }
+}
+
+.entry_modal_root-card:nth-child(odd) {
+    margin-right: 8px;
+}

@@ -14,6 +14,7 @@ import { editStore } from '@store/index';
 export interface IMCodeMirror {
     onMarkClick?: (marker: MTextMarker) => void;
     onMounted?: (editor: MEditor) => void;
+    onChange?: (editor: Editor, data: string, value: string) => void;
     initialValue?: string;
     showGutter?: boolean;
     customClass?: string;
@@ -57,7 +58,8 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
                 atomic: true,
                 selectRight: true,
                 className: markClass,
-                replacedWith: span
+                replacedWith: span,
+                handleMouseEvents: true,
             })
             setMarks([...marks, mark])
             return mark;
@@ -72,28 +74,24 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
         (editor as Editor).getDoc().getAllMarks().forEach(mark => mark.clear())
         setMarks([]);
     };
-    const getMark = (codeMirror, mouseEvent): MTextMarker | boolean => {
-        if (!mouseEvent.target.dataset.pos) {
+    const getMark = (editor: Editor): MTextMarker | boolean => {
+        const cursorPos = editor.getCursor();
+        const lineMarks = editor.getDoc().findMarksAt(cursorPos);
+        if (!lineMarks.length) {
             return false;
         }
-        const [line, ch] = mouseEvent.target.dataset.pos.split('-');
-        const cursorPos = {
-            line,
-            ch
-        };
-        const lineMarks = codeMirror.getDoc().findMarksAt(cursorPos);
-        const target = mouseEvent.target;
+        const target = lineMarks[0].replacedWith;
         return lineMarks.length ? {
             id: +lineMarks[0].replacedWith.dataset.id,
             marker: lineMarks[0],
             text: target.innerText,
-            editor: codeMirror,
-            line: +line,
-            ch: +ch
+            editor: editor,
+            line: cursorPos.line,
+            ch: cursorPos.ch
         } : false;
     };
 
-    const findMark = (id, event): MTextMarker | false => {
+    const findMark = (id, event, word = ''): MTextMarker | false => {
         if (event) {
             if (event === EVENTS.openTitleCard && tag === 'content') return;
             if (event === EVENTS.openContentCard && tag === 'title') return;
@@ -101,11 +99,11 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
         const cm = event === EVENTS.openTitleCard ? editStore.titleCM : editStore.contentCM;
         const lineMarks = cm.editor.getDoc().getAllMarks();
         let resultMark = lineMarks.filter(mark => {
-            if (+mark.replacedWith.dataset.id === id) {
+            if (+mark.replacedWith.dataset.id === id && ((word && mark.replacedWith.innerText === word) || !word)) {
                 return mark
             }
         });
-        return lineMarks.length ? {
+        return resultMark.length ? {
             id: +resultMark[0].replacedWith.dataset.id,
             marker: resultMark[0],
             text: '',
@@ -127,10 +125,16 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
         marker.marker = newM;
     }
     function resetOldMark(marker: MTextMarker) {
-        updateMark(marker, NORMAL_MARK_CLASS)
+        const _marker = marker.marker;
+        const className = _marker.className;
+        const newMarkerClassName = className.split(' ')[0];
+        updateMark(marker, newMarkerClassName)
     }
     function selectNewMark(marker: MTextMarker) {
-        updateMark(marker, SELECTED_MARK_CLASS)
+        const _marker = marker.marker;
+        const className = _marker.className;
+        const newMarkerClassName = className + ' ' + className + '--selected';
+        updateMark(marker, newMarkerClassName)
         editorStore.selectedMark = marker;
     }
 
@@ -141,14 +145,13 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
             createMark,
             clearMarks,
         });
-        editor.on('mousedown', (codeMirror, mouseEvent) => {
-            const mark = getMark(codeMirror, mouseEvent);
+        editor.on('cursorActivity', (instance: Editor) => {
+            const mark = getMark(instance);
             if (!mark) {
                 return;
             }
             onMarkClick(mark as MTextMarker);
             const { selectedMark } = editorStore;
-
             if (selectedMark && selectedMark.marker.className === ((mark as MTextMarker).marker.className)) {
                 return;
             }
@@ -163,7 +166,7 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
     useBus(
         EVENTS.openTitleCard,
         (e) => {
-            const mark = findMark(e.id, EVENTS.openTitleCard);
+            const mark = findMark(e.id, EVENTS.openTitleCard, e.word);
             if (!mark) {
                 return;
             }
@@ -222,7 +225,7 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
             if (tag !== 'title') return;
             clearMarks(editStore.titleCM.editor);
             editStore.titleMarks.forEach(m => {
-                editStore.titleCM.createMark(editStore.titleCM.editor, m.from, m.to, 'error-mark', m.id)
+                editStore.titleCM.createMark(editStore.titleCM.editor, m.from, m.to, 'error-mark', +m.id)
             });
         }
     )
@@ -241,6 +244,7 @@ const MCodeMirror: React.FC<IMCodeMirror> = (props) => {
                     readOnly: readOnly ? 'nocursor' : false,
                 }}
                 editorDidMount={editorMounted}
+                onChange={(editor, data, value) => props.onChange(editor, data, value)}
             />
         </Layout>
     )
