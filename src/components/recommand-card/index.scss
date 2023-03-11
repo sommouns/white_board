@@ -1,0 +1,423 @@
+html {
+    --antd-wave-shadow-color: #892DFF;
+}
+
+.recommand_card {
+    border-radius: 8px;
+    margin-bottom: 16px;
+
+    .list-dot {
+        background: url(../../assets/images/dot.png) no-repeat;
+        background-size: contain;
+        width: 8px;
+        height: 8px;
+    }
+
+    .word {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 150%;
+        /* identical to box height, or 21px */
+        color: #1D2129;
+        margin-left: 8px;
+    }
+
+    .desc {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 150%;
+        /* identical to box height, or 21px */
+        color: #86909C;
+        margin-left: 8px;
+    }
+
+    .remove {
+        margin-left: auto;
+        height: 18px;
+        width: 16px;
+        background: url(../../assets/images/delete.png) no-repeat;
+        background-size: cover;
+        cursor: pointer;
+    }
+
+    .ant-tag {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        /* identical to box height, or 24px */
+        color: #1D2129;
+    }
+
+    .ant-tag.topicTag {
+        font-weight: normal;
+        margin-bottom: 8px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        cursor: pointer;
+    }
+
+    .ant-tag.topicTag:hover {
+        background-color: #E1CBFF !important;
+    }
+
+    .ant-tag.topicTag:active,
+    .ant-tag.topicTag:focus {
+        background-color: #CFAAFF !important;
+    }
+
+    .title {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 150%;
+        /* identical to box height, or 24px */
+        color: #1D2129;
+    }
+
+    .content {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 180%;
+        color: #4E5969;
+        margin-bottom: 0px;
+    }
+
+    .ant-card-body {
+        padding: 20px;
+    }
+
+    .rawWord {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+        text-decoration: line-through
+    }
+
+    .arrow {
+        width: 20px;
+        height: 11px;
+        margin-left: 12px;
+
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    .ant-tag {
+        border-radius: 4px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 150%;
+    }
+
+    .ant-carousel .slick-prev,
+    .ant-carousel .slick-next,
+    .ant-carousel .slick-prev:hover,
+    .ant-carousel .slick-next:hover {
+        font-size: inherit;
+        color: currentColor;
+    }
+
+    .leftButton,
+    .rightButton {
+        border: none;
+        height: 36px;
+        width: 36px;
+        transition: 1s;
+        background: rgba(29, 33, 41, 0.04);
+        border-radius: 100px;
+        color: #4E5969;
+        position: absolute;
+        top: 40%;
+        z-index: 10;
+        transform: translateY(-50%);
+    }
+
+
+    .leftButton {
+        left: -30px;
+    }
+
+    .topic-carousel .ant-card {
+        width: 140px !important;
+        height: 200px;
+        overflow: overlay;
+    }
+
+    .topic-carousel .ant-card::-webkit-scrollbar {
+        display: none
+    }
+
+    .ant-carousel .topic-carousel {
+        // padding-left: 30px;
+        // padding-right: 30px;
+    }
+
+    .topic-carousel .ant-card-body {
+        padding: 8px;
+        padding-bottom: 0px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 18px;
+        color: #4E5969;
+        background-color: #fff;
+    }
+
+    .topic-carousel_card--selected {
+        border: 2px solid #892DFF;
+        box-shadow: 0px 4px 10px rgba(50, 17, 77, 0.1);
+    }
+
+    .topic-carousel .ant-card-body .text-3 {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        overflow: hidden;
+        height: 4.5em;
+    }
+
+    .topic-carousel .slick-slide>div {
+        height: 200px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    .topic-carousel .ant-card-hoverable:hover,
+    .topic-carousel .ant-input:hover {
+        box-shadow: 0px 4px 10px rgba(50, 17, 77, 0.1);
+    }
+
+    .urlInput .ant-input {
+        background: #F2F3F5;
+        border-radius: 4px;
+        border: none;
+        outline-color: #892DFF;
+    }
+
+    .urlInput .ant-input:focus,
+    .urlInput .ant-input:hover {
+        border-color: #892DFF;
+        box-shadow: 0 0 0 2px #dec4ff;
+    }
+
+    .urlInput .ant-input::selection {
+        background: #892DFF;
+    }
+
+    .topic-carousel .topic-carousel_card {
+        width: 140px;
+        height: 200px;
+        background: #fff;
+        border-radius: 8px;
+
+        .ant-card-cover img {
+            width: 139px;
+            height: 130px;
+        }
+    }
+
+    .topic-button {
+        margin: 20px auto 0px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 5px 16px;
+        height: 32px;
+        background: #892DFF;
+        color: #fff;
+        border-radius: 100px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+    }
+
+    .topic-button--disabled {
+        cursor: not-allowed;
+        opacity: 0.3;
+    }
+
+    .ant-space-vertical {
+        width: 100%;
+    }
+
+    .ant-collapse-expand-icon {
+        width: 0;
+    }
+
+    .ant-collapse-content {
+        border-top: none;
+    }
+
+    .ant-collapse-header-text {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 22px;
+        color: #4E5969;
+        flex: 1;
+    }
+
+    .ant-collapse-header {
+        padding: 20px;
+        padding-bottom: 16px;
+    }
+
+    .ant-collapse-content-box {
+        padidng: 20px;
+        padding-top: 0px;
+    }
+
+    .ant-collapse-content-box p {
+        margin-bottom: 0px;
+    }
+
+    .ant-collapse {
+        border: none;
+        background: none;
+    }
+
+    .ant-collapse-item {
+        background-color: #F7F8FA;
+        border: none;
+        margin-bottom: 16px;
+    }
+
+    .ant-collapse-item-active {
+        background: #fff;
+        border: 1px solid #E5E6EB;
+        border-radius: 4px;
+    }
+}
+
+.five-key {
+    .checked-box {
+        background: #F2F3F5;
+        border-radius: 4px;
+        min-height: 82px;
+    }
+
+    .ant-pagination-item {
+        font-size: 14px;
+        border: none;
+        border-radius: 50%;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+        line-height: 22px;
+        color: #86909C;
+
+    }
+
+    .ant-pagination-item-active {
+        background-color: rgba(247, 248, 250, 1);
+    }
+
+    .ant-pagination-item-link {
+        border: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    .checked-box {
+        padding: 8px;
+    }
+
+    .selectedWord {
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        padding: 8px;
+        background: #FFFFFF;
+        border-radius: 4px;
+        margin: 3px;
+    }
+}
+
+.five-key_card_wrapper {
+    .five-key_card--selected {
+        background: rgba(266, 82%, 100%, .3) !important;
+        /* Brand/Main */
+        border: 1px solid #892DFF;
+
+        .five-key_card_en {
+            color: #892DFF;
+
+        }
+
+        .five-key_card_cn {
+            color: rgba(137, 45, 255, 0.6);
+        }
+    }
+
+
+    .five-key_card {
+        padding: 8px 24px;
+        width: 154px;
+        height: 50px;
+        background: #F7F8FA;
+        border-radius: 4px;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin: 4px;
+        cursor: pointer;
+    }
+
+    .five-key_card_en {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 100%;
+        white-space: pre;
+        /* identical to box height, or 14px */
+
+
+        /* Text/标题文字 */
+
+        color: #1D2129;
+
+    }
+
+    .five-key_card_cn {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 12px;
+        line-height: 100%;
+        /* identical to box height, or 12px */
+
+
+        /* Text/次要文字 */
+
+        color: #86909C;
+        margin-top: 8px;
+
+    }
+}

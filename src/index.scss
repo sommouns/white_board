@@ -22,7 +22,20 @@ svg path {
         text-align: center;
     }
 
-    .ant-table-thead > tr > th {
+    .ant-table-thead>tr>th {
         text-align: center;
     }
+}
+
+.ant-layout-content {
+    overflow: scroll;
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+.ant-layout-content::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
 }

@@ -1,0 +1,336 @@
+.selling-point-selector {
+    .ant-modal-content {
+        border-radius: 16px;
+    }
+
+    .ant-modal-body {
+        padding: 40px 84px;
+    }
+
+    .ant-divider {
+        margin: 16px 0;
+    }
+
+    &_title {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 100%;
+        /* identical to box height, or 20px */
+
+        text-align: center;
+        letter-spacing: 0.02em;
+
+        /* Text/标题文字 */
+
+        color: #1D2129;
+        margin-bottom: 44px;
+    }
+
+    &_wrapper {
+        &_regular {
+            &_title {
+                font-family: 'PingFang SC';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 12px;
+                color: #4E5969;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+            }
+
+            &_main {
+                max-height: 88px;
+                overflow-y: scroll;
+
+                .ant-tag {
+                    border: none;
+                    font-family: 'PingFang SC';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 150%;
+                    color: #1D2129;
+                    padding: 4px 8px;
+                    margin: 6px 4px;
+                    margin-left: 0px;
+                    margin-right: 8px;
+                    cursor: pointer;
+                }
+            }
+
+
+        }
+
+        &_divider {
+            width: 24px;
+            background: url(../../assets/images/v-divider.png) no-repeat;
+            background-size: contain;
+            margin-left: 24px;
+            margin-right: 24px;
+        }
+
+        &_pages {
+            margin-top: 16px;
+
+            &_card {
+                display: inline-flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                padding: 12px 24px;
+                gap: 8px;
+
+                width: 190px;
+                height: 62px;
+
+                /* Fill/浅-禁用 */
+
+                background: #F7F8FA;
+                border-radius: 4px;
+                margin-bottom: 8px;
+
+                &--selected {
+                    background: #F5EDFF;
+                    border: 1px solid #892DFF;
+
+                    .selling-point-selector_wrapper_pages_card_en {
+                        font-weight: 500;
+                        color: #892DFF;
+                    }
+
+                    .selling-point-selector_wrapper_pages_card_cn {
+                        color: #892DFF;
+                    }
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                &:nth-child(odd) {
+                    margin-right: 8px;
+                }
+
+                &_en {
+                    font-family: 'PingFang SC';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 16px;
+                    line-height: 100%;
+                    color: #1D2129;
+
+                }
+
+                &_cn {
+                    font-family: 'PingFang SC';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 100%;
+                    color: #86909C;
+                }
+            }
+
+            .ant-pagination {
+                text-align: center;
+            }
+
+            .ant-pagination-item-link {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        &_selected {
+            .ant-btn-link {
+                padding: 0px;
+                display: flex;
+                align-items: center;
+                color: #4E5969;
+            }
+
+            .ant-alert {
+                margin-top: 12px;
+                margin-bottom: 12px;
+                background: #FFEAEA;
+                border-radius: 4px;
+                padding: 4px 8px;
+
+                .ant-alert-message {
+                    color: #f53f3f;
+                }
+            }
+
+            &_title {
+
+                font-family: 'PingFang SC';
+                font-style: normal;
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 100%;
+                /* identical to box height, or 16px */
+
+                letter-spacing: 0.02em;
+
+                /* Text/标题文字 */
+
+                color: #1D2129;
+                display: flex;
+                align-items: center;
+            }
+
+            &_desc {
+                font-family: 'PingFang SC';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 14px;
+                letter-spacing: 0.02em;
+                /* Text/描述文字 */
+                color: #4E5969;
+
+            }
+
+            &_main {
+                height: 220px;
+                overflow-y: scroll;
+                scrollbar-width: none;
+                /* firefox */
+                -ms-overflow-style: none;
+
+                /* IE 10+ */
+                &_card-wrapper {
+                    &:nth-child(odd) {
+                        margin-right: 8px;
+                        margin-bottom: 8px;
+                    }
+
+                    display: flex;
+                    flex-direction: column;
+                }
+
+                &_card-tip {
+                    font-family: 'PingFang SC';
+                    font-style: normal;
+                    font-weight: 400;
+                    font-size: 14px;
+                    line-height: 100%;
+                    letter-spacing: 0.02em;
+                    color: #F53F3F;
+                    margin-top: 6px;
+                }
+
+                &::-webkit-scrollbar {
+                    display: none;
+                    /* Chrome Safari */
+                }
+
+                &_card {
+                    width: 190px;
+                    padding: 16px 24px;
+                    /* Fill/浅-禁用 */
+
+                    background: #F7F8FA;
+                    border-radius: 4px;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    cursor: pointer;
+
+
+                    &--add {
+                        background: #FFFFFF;
+                        /* Border/深-悬浮 */
+
+                        border: 1px dashed #C9CDD4;
+                        border-radius: 4px;
+                        display: inline-flex;
+
+                        .ant-btn {
+                            line-height: 1;
+                            height: auto;
+                        }
+
+                        &:hover {
+                            .ant-btn {
+                                color: #892DFF;
+                            }
+
+                            border-color: #892DFF;
+                        }
+
+                    }
+
+                    &--input {
+                        background-color: #FFFFFF;
+                        border: 1px solid #892DFF;
+                        border-radius: 4px;
+
+                        .ant-input {
+                            background: none;
+                            outline: none;
+                            border: none;
+                            padding: 0;
+
+                            &:focus {
+                                outline: none;
+                                box-shadow: none;
+                            }
+                        }
+
+                        &--focus {}
+                    }
+                }
+
+
+            }
+        }
+
+
+    }
+
+    &_preview {
+        margin-top: 30px;
+        background: #F7F8FA;
+        border-radius: 4px;
+        padding: 16px 16px 8px;
+
+        &_title {
+            font-family: 'PingFang SC';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 100%;
+            /* identical to box height, or 14px */
+
+            letter-spacing: 0.02em;
+
+            /* Text/次要文字 */
+
+            color: #86909C;
+            margin-bottom: 8px;
+        }
+
+        &_content {
+            max-height: 5em;
+            overflow-y: scroll;
+        }
+
+
+    }
+
+    &_btns {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        margin-top: 24px;
+
+        .ant-btn {
+            border-radius: 100px;
+        }
+    }
+}

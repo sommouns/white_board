@@ -48,7 +48,6 @@ function toastError(e: any) {
 }
 
 function handleError(e: any) {
-    console.error(e)
     toastError(e)
 }
 

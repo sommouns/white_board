@@ -1,0 +1,94 @@
+.test {
+    background: rgba(255, 0, 0, .3);
+    cursor: pointer;
+}
+
+.test2 {
+    color: green;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.test_gutter {
+    display: block;
+    width: 20px;
+    background: yellow;
+}
+
+.CodeMirror-gutters {
+    background-color: #fff !important;
+    border: none !important;
+}
+
+.title-editor {
+    font-family: 'PingFang';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    color: #1D2129;
+}
+
+.content-editor {
+    font-family: 'PingFang';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #333333;
+}
+
+.title-editor .CodeMirror-lines,
+.content-editor .CodeMirror-lines {
+    cursor: default;
+}
+
+.content-editor .CodeMirror {
+    width: 590px;
+    height: auto;
+}
+
+.preview-editor .ant-card {
+    border-radius: 8px;
+}
+
+/* .preview-editor>div {
+    width: 640px;
+    overflow: hidden;
+    box-sizing: content-box;
+} */
+
+.card-focused .ant-card {
+    border: 1px solid rgba(137, 45, 255, 1);
+    border-radius: 8px;
+}
+
+.main-editor_title .CodeMirror {
+    width: 540px;
+    height: auto;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    /* or 140% */
+
+    letter-spacing: 0.02em;
+}
+
+.main-editor_content .CodeMirror {
+    width: 600px;
+    height: auto;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    /* or 175% */
+    color: #333333;
+}
+
+.main-editor_content .CodeMirror-gutter-elt {
+    font-size: 28px;
+}

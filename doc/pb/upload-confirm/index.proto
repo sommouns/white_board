@@ -1,0 +1,16 @@
+message Request {
+    required String word = 1;
+    required String desc = 2;
+}
+
+message Response {
+    optional Boolean hasError = 1; // 当词根模糊时返回为true
+    optional repeated Competitor competitor = 2; // 当词根模糊时返回为对应的竞品列表
+    optional String token = 3; // 用于作为后续编辑器识别的会话唯一标志
+}
+
+message Competitor {
+    optional String id = 1;
+    optional String cover = 2;
+    optional String title = 3;
+}

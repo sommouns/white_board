@@ -46,7 +46,6 @@ function Send() {
             setJsonContent(JSON.parse(content))
             toggleModalVisible()
         } catch (err) {
-            console.error(err)
             message.destroy()
             message.error('Please input json string!')
         }

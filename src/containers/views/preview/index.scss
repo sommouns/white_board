@@ -1,0 +1,240 @@
+.test {
+    background: rgba(255, 0, 0, .3);
+    cursor: pointer;
+}
+
+.test2 {
+    color: green;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.test_gutter {
+    display: block;
+    width: 20px;
+    background: yellow;
+}
+
+.CodeMirror-gutters {
+    background-color: #fff !important;
+    border: none !important;
+}
+
+.title-editor {
+    font-family: 'PingFang';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.02em;
+    color: #1D2129;
+}
+
+.content-editor {
+    font-family: 'PingFang';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 28px;
+    color: #333333;
+}
+
+.title-editor .CodeMirror-lines,
+.content-editor .CodeMirror-lines {
+    cursor: default;
+}
+
+.title-editor .CodeMirror {
+    width: 590px;
+    height: auto;
+}
+
+.content-editor .CodeMirror {
+    width: 590px;
+    height: auto;
+}
+
+
+
+.preview-editor .ant-card {
+    border-radius: 8px;
+}
+
+.preview-editor {
+    overflow-x: scroll;
+}
+
+.preview-editor::-webkit-scrollbar {
+    display: none;
+    /* Chrome Safari */
+}
+
+.preview-editor {
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+    /* IE 10+ */
+}
+
+/* .preview-editor>div {
+    width: 640px;
+    overflow: hidden;
+    box-sizing: content-box;
+} */
+
+.card-focused .ant-card {
+    border: 1px solid rgba(137, 45, 255, 1);
+    border-radius: 8px;
+}
+
+.preview {
+    height: 100vh;
+    overflow: hidden;
+
+    .word_count {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 22px;
+        /* identical to box height, or 138% */
+
+        display: flex;
+        align-items: center;
+
+        /* Text/次要文字 */
+
+        color: #86909C;
+
+        span {
+            color: #000;
+        }
+    }
+
+    .line {
+        background-color: #E5E6EB;
+        height: 1px;
+        margin: 10px auto;
+        width: 95%;
+    }
+
+    .translate--title {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 28px;
+        /* or 140% */
+
+        letter-spacing: 0.02em;
+
+        /* Text/次要文字 */
+
+        color: #86909C;
+    }
+
+    .translate--content {
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 28px;
+        color: #4E5969;
+    }
+
+    .preview-btn button {
+        border-radius: 100px;
+    }
+
+    .preview-btn .ant-btn-default {
+        color: rgba(137, 45, 255, 1)
+    }
+}
+
+.preview_sidebar {
+    width: 180px;
+    background-color: #fff;
+    padding: 16px;
+
+    .preview_sidebar_logo {
+        background: url('../../../assets/images/logo.svg') no-repeat;
+        background-size: contain;
+        width: 95px;
+        height: 22px;
+    }
+
+    .preview_sidebar_keywords_val {
+        width: 148px;
+        height: 48px;
+        border: 1px solid #E5E6EB;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        padding: 16px 12px;
+        font-size: 14px;
+        line-height: 14px;
+        color: #4e5969;
+        cursor: pointer;
+
+        &--active {
+            color: #892DFF;
+            border-color: #B77EFF;
+        }
+    }
+
+    .preview_sidebar_user {
+        margin-top: auto;
+    }
+}
+
+.topic-mark {
+    background-color: rgba(137, 45, 255, .1);
+    text-decoration: underline;
+    text-decoration-color: rgba(137, 45, 255, 1);
+    text-underline-offset: 4px;
+    cursor: pointer;
+}
+
+.desc-editor--disabled {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: -2px;
+    text-align: center;
+    font-family: 'PingFang SC';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 180%;
+    text-align: center;
+    background-color: rgba(255, 255, 255, .76);
+    color: #1D2129;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// mark样式
+.error-mark {
+    text-decoration: underline;
+    text-decoration-color: #F53F3F;
+    text-underline-offset: 4px;
+    cursor: pointer;
+
+    &:hover,
+    &--selected {
+        background: rgba(245, 63, 63, .15)
+    }
+}
+
+.recommand-mark {
+    text-decoration: underline;
+    text-decoration-color: rgba(137, 45, 255, 1);
+    text-underline-offset: 4px;
+    cursor: pointer;
+
+    &:hover,
+    &--selected {
+        background-color: rgba(137, 45, 255, .1);
+    }
+}

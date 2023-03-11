@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ant-message-custom-content.ant-message-success {
+    display: flex;
+    align-items: center;
+}

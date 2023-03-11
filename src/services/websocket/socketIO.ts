@@ -85,7 +85,6 @@ class _Socket {
                 from: 'console',
                 data: text
             })
-            console.warn(err)
         })
 
         // 错误捕获
@@ -97,7 +96,6 @@ class _Socket {
                 from: 'console',
                 data: text
             })
-            console.warn(err)
         })
 
         this.socket.on('connect', () => {
@@ -127,7 +125,6 @@ class _Socket {
         })
 
         this.socket.on('*', pkg => {
-            console.log('on all socket callback: ', pkg)
             if (pkg && pkg.data instanceof Array && pkg.data.length > 1) {
                 const event = pkg.data[0]
                 const data = pkg.data[1]

@@ -1,0 +1,14 @@
+message Request {
+    optional String token = 1;
+}
+
+message Response {
+    optional Boolean hasError = 1; // 存在卖点词提示
+    optional String warning = 2; // 横幅提示
+    repeated WordWithTip tips = 3;
+}
+
+message WordWithTip {
+    optional String en = 1; // 词语
+    optional String tip = 2; // 提示信息 
+}

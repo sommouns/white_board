@@ -5,25 +5,30 @@ import { Routes, Route } from 'react-router-dom'
 import styles from './index.module.scss'
 import Error from '@components/Error'
 import PageLoading from '@components/PageLoading'
-import { routeMap, menusWithRoute, RouteMapValue } from './menu'
 import Header from './Header'
-import Sider from './Sider'
+import Preview from '../preview'
+import Editor from '../editor'
+import Entry from '../entry'
+import ToolBox from '@components/tool-box'
+import { LoginPage } from '../login/index';
+import { WechatScanLogin } from '../login/wechat-scan';
+import { Register } from '../login/register';
+import { ForgetPwdPage } from '../login/forget-pwd';
+import '../login/index.scss'
 
 function Home() {
     return (
         <Layout>
-            <Sider />
             <Layout>
-                <Header />
                 <Layout.Content className={styles.content}>
                     <Suspense fallback={<PageLoading />}>
                         <Routes>
-                            {menusWithRoute.map(m => {
-                                const item = routeMap[m.key] as RouteMapValue
-                                const Component = item.component
-                                return <Route key={m.key} path={item.path} element={<Component />} />
-                            })}
-                            <Route path="*" element={<Error />} />
+                            <Route path='/preview' element={<Preview />}></Route>
+                            <Route path='/signin' element={<LoginPage />}></Route>
+                            <Route path='/wechat' element={<WechatScanLogin />}></Route>
+                            <Route path='/register' element={<Register />}></Route>
+                            <Route path='/forget' element={<ForgetPwdPage />}></Route>
+                            <Route path='/' element={<Entry />}></Route>
                         </Routes>
                     </Suspense>
                 </Layout.Content>

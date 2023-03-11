@@ -1,0 +1,60 @@
+.tool-box_tab_warpper {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    margin-bottom: 20px;
+
+    .tool-box_tab_item {
+        flex: 1;
+        text-align: center;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        color: #86909C;
+        cursor: pointer;
+    }
+
+    .tool-box_tab_item--active {
+        color: #1D2129;
+        position: relative;
+
+        &::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            width: 2em;
+            height: 2px;
+            background-color: #1D2129;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+}
+
+.ant-modal-body .ant-modal-confirm-btns {
+    text-align: center;
+
+    .ant-modal-confirm-title {
+        font-size: 16px;
+    }
+
+    button {
+        border-radius: 4px;
+    }
+}
+
+.tool-box_card {
+    max-height: calc(100vh - 48px - 44px);
+    overflow-y: scroll;
+    scrollbar-width: none;
+    /* firefox */
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+        display: none;
+        /* Chrome Safari */
+    }
+}

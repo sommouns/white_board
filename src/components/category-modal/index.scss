@@ -1,0 +1,129 @@
+.category-modal {
+    .ant-modal-content {
+        border-radius: 16px;
+    }
+
+    .ant-modal-body {
+        padding: 38px 40px;
+    }
+
+    .category-modal_header {
+        margin-bottom: 30px;
+    }
+
+    .category-modal_header_title {
+        font-weight: 500;
+        font-size: 20px;
+    }
+
+    .category-modal_header_lang-tab {
+        line-height: 32px;
+        padding: 4px;
+        background: #F2F3F5;
+        border-radius: 100px;
+    }
+
+    .category-modal_header_lang-tab>div {
+        text-align: center;
+        padding: 0 8px;
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: center;
+        color: #4E5969;
+        cursor: pointer;
+    }
+
+    .category-modal_header_lang-tab--selected {
+        background: #FFFFFF;
+        border-radius: 100px;
+    }
+
+    .category-modal_main_item--active {
+        background-color: #F5EDFF !important;
+        color: #892DFF !important;
+    }
+
+    .category-modal_main {
+        border: 1px solid #E5E6EB;
+        border-radius: 8px;
+    }
+
+    .category-modal_main_input {
+        padding: 22px 16px;
+        border-bottom: 1px solid #E5E6EB;
+        font-size: 16px;
+        min-height: 72px;
+
+        .category-modal_main_input_main {
+            max-height: 80px;
+            margin-right: 8px;
+            overflow-y: scroll;
+            scrollbar-width: none;
+            /* firefox */
+            -ms-overflow-style: none;
+
+            &::-webkit-scrollbar {
+                display: none;
+                /* Chrome Safari */
+            }
+        }
+
+        .category-modal_main_input--placeholder {
+            font-family: 'PingFang SC';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 100%;
+            color: #86909C;
+        }
+
+        .category-modal_main_input_word {
+            color: #892DFF;
+            cursor: pointer;
+        }
+    }
+
+    .category-modal_main_item {
+        min-height: 60px;
+        padding: 0 16px;
+        line-height: 60px;
+        font-family: 'PingFang SC';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 100%;
+        color: #1D2129;
+        cursor: pointer;
+    }
+
+    .category-modal_main_item:hover,
+    .category-modal_main_item:active {
+        background: #F2F3F5;
+    }
+
+    .category-modal_main_options {
+        height: 330px;
+        overflow-y: scroll;
+        scrollbar-width: none;
+        /* firefox */
+        -ms-overflow-style: none;
+        /* IE 10+ */
+    }
+
+    .category-modal_main_options::-webkit-scrollbar {
+        display: none;
+        /* Chrome Safari */
+    }
+
+    .category-modal_btns {
+        margin-top: 24px;
+    }
+
+    .category-modal_btns .ant-btn {
+        border-radius: 100px;
+        width: 140px;
+        height: 40px;
+        text-align: center;
+    }
+}

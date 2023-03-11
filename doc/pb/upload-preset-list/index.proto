@@ -1,0 +1,13 @@
+
+
+message Request {
+    
+}
+
+message Response {
+    optional repeated UploadPresetListItem list  = 1;
+}
+message UploadPresetListItem {
+    required String label  = 1; // 词根对应展示的内容，例如dress
+    required String value  = 2; // 词根对应的id
+}
